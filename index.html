@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Navegación de Lista</title>
+    <link rel="stylesheet" href="styles3.css">
 </head>
 <body>
-    <div class="container">
-        <button id="helloButton">Click me</button>
-        <div id="helloContainer"></div>
+    <div class="container">                
+        <h2 id="total-coins">0 <img src="resources/coin.png"></h2>
+        <div class="gui-zone">
+            <div class="left-gui-zone">
+                <div class="gui-info">
+                    <p>progress ........ <span id="progress">0%</span></p>
+                    <p>product ......... <span id="product">none</span></p>
+                    <p>fertilizing ..... <span id="fertilizing">no</span></p>
+                </div>
+                <div class="field-gui" id="field"></div>
+            </div>
+            <div class="right-gui-zone">
+                <p>fields</p>
+                <div id="field-list"></div>
+            </div>
+        </div>     
+        <div class="navigation">
+            <button id="prevBtn">&lt;</button>
+            <span id="currentIndex">1</span>
+            <button id="nextBtn">&gt;</button>
+        </div>
+        <div class="play-zone">
+
+        </div class="information-zone">
     </div>
-    <script src="app.js"></script>
+    <script src="scripts3.js"></script>
 </body>
 </html>

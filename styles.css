@@ -8,15 +8,72 @@ body {
 }
 
 .container {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+h2 {
+    text-align: right;
+}
+
+.gui-zone {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 1000px;
+    height: 600px;
+    background-color: #000;
+    color: #0f0;
+    padding: 10px;
+    border: 2px solid #0f0;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 20px;
+    white-space: pre;
+}
+
+.left-gui-zone {
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.gui-info {
+    display: grid;
+    grid-template-rows: 30px 30px 30px;
+}
+
+.field-gui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-gui-zone {
+    border: 2px solid #0f0;
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.right-gui-zone p {
     text-align: center;
 }
 
-#helloButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+
+
+
+.navigation {
+    margin-bottom: 20px;
 }
 
-#helloContainer {
-    margin-top: 20px;
+button {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#currentIndex {
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.display {
+    font-size: 24px;
 }
