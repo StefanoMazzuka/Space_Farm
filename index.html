@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)file:///C:/python_workspace/Space_Farm/index.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navegación de Lista</title>
     <link rel="stylesheet" href="styles.css">
@@ -11,11 +10,22 @@
         <h2 id="total-coins">0 <img src="resources/coin.png"></h2>
         <div class="gui-zone">
             <div class="left-gui-zone">
-                <div class="gui-info">
-                    <p>progress ........ <span id="progress">0%</span></p>
-                    <p>product ......... <span id="product">none</span></p>
-                    <p>fertilizing ..... <span id="fertilizing">no</span></p>
-                </div>
+                <table class="gui-info">
+                    <tbody>
+                        <tr>
+                            <td>progress</td>
+                            <td id="progress">0%</td>
+                        </tr>
+                        <tr>
+                            <td>product</td>
+                            <td id="product">none</td>
+                        </tr>
+                        <tr>
+                            <td>fertilizing</td>
+                            <td id="fertilizing">no</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="field-gui" id="field"></div>
             </div>
             <div class="right-gui-zone">

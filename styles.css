@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: monospace;
+    font-size: 11px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,8 +9,8 @@ body {
 }
 
 .container {
-    font-family: monospace;
-    font-size: 15px;
+    width: 80%;
+    height: 100%;
 }
 
 h2 {
@@ -18,14 +19,14 @@ h2 {
 
 button {
     font-family: monospace;
-    font-size: 15px;
+    font-size: 112px;
 }
 
 .gui-zone {
     display: grid;
     grid-template-columns: 70% 30%;
-    width: 1000px;
-    height: 600px;
+    width: auto;
+    height: auto;
     background-color: #000;
     color: #0f0;
     padding: 10px;
@@ -42,7 +43,7 @@ button {
 
 .gui-info {
     display: grid;
-    grid-template-rows: 30px 30px 30px;
+    grid-template-rows: auto auto auto;
 }
 
 .field-gui {
