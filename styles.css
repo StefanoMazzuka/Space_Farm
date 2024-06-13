@@ -50,6 +50,8 @@ button {
     vertical-align: middle; 
     line-height: normal;
     white-space: pre-wrap;
+    font-size: 20px;
+    line-height: 0.4;
 }
 
 .right-gui-zone {
