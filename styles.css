@@ -71,7 +71,7 @@ button {
 
 .left-play-zone {
     display: grid;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid black;
     justify-content: center;
     align-items: center;
     margin: 2px;
@@ -80,16 +80,45 @@ button {
 
 .right-play-zone {
     display: grid;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid black;
     justify-content: center;
     align-items: center;
     margin: 2px;
     padding: 2px;
 }
 
-.market-demand-table td:nth-child(2), .market-demand-table th:nth-child(2){
+table td:nth-child(2) {
     text-align: right;
 }
+
+.warehouse {
+    display: grid;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
+}
+
+.top {
+    vertical-align: top;
+}
+
+table.seeds-table {
+    border: 1px solid black;
+}
+
+table.products-table {
+    border: 1px solid black;
+}
+
+table.harvest-table {
+    border: 1px solid black;
+}
+
+
+
+
 
 
 
