@@ -9,11 +9,16 @@ body {
 
 .container {
     font-family: monospace;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 h2 {
     text-align: right;
+}
+
+button {
+    font-family: monospace;
+    font-size: 15px;
 }
 
 .gui-zone {
@@ -27,7 +32,6 @@ h2 {
     border: 2px solid #0f0;
     overflow-y: auto;
     margin-bottom: 10px;
-    font-size: 20px;
     white-space: pre;
 }
 
@@ -53,9 +57,40 @@ h2 {
     grid-template-rows: 20% 80%;
 }
 
-.right-gui-zone p {
+.p-title {
     text-align: center;
 }
+
+.play-zone {
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 10px 1px;
+}
+
+.left-play-zone {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 20px;
+    padding-top: 30px;
+    margin: 10px;
+}
+
+.right-play-zone {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 20px;
+    padding-top: 0px;
+    margin: 10px;
+}
+
+.market-demand-table td:nth-child(2), .market-demand-table th:nth-child(2){
+    text-align: right;
+}
+
+
+
 
 
 

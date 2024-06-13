@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0049)file:///C:/python_workspace/Space_Farm/index.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navegación de Lista</title>
     <link rel="stylesheet" href="styles.css">
@@ -19,19 +19,78 @@
                 <div class="field-gui" id="field"></div>
             </div>
             <div class="right-gui-zone">
-                <p>fields</p>
+                <p class="p-title">fields</p>
                 <div id="field-list"></div>
             </div>
         </div>     
-        <div class="navigation">
-            <button id="prevBtn">&lt;</button>
-            <span id="currentIndex">1</span>
-            <button id="nextBtn">&gt;</button>
-        </div>
-        <div class="play-zone">
 
-        </div class="information-zone">
+        <div class="play-zone">
+            <div class="left-play-zone">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>field</td>
+                            <td>
+                                <button id="prev-field-btn">&lt;</button>
+                                <span id="current-field-index">1</span>
+                                <button id="next-field-btn">&gt;</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>seed</td>
+                            <td>
+                                <button id="prev-seed-btn">&lt;</button>
+                                <span id="current-seed-index">wheat</span>
+                                <button id="next-seed-btn">&gt;</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <button id="plant-btn">plant</button>
+                    <button id="harvest-btn">harvest</button>
+                    <button id="fertilizing-btn">fertilizing</button>
+                </p>
+            </div>
+            <div class="right-play-zone">
+                <p class="p-title">market demand</p>
+                <table class="market-demand-table">
+                    <tbody>
+                        <tr>
+                            <td>wheat</td>
+                            <td id="wheat-market-demand">0</td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                        <tr>
+                            <td>lettuce</td>
+                            <td id="lettuce-market-demand">0</td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                        <tr>
+                            <td>corn</td>
+                            <td id="corn-market-demand">0</td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                        <tr>
+                            <td>tomato</td>
+                            <td id="tomato-market-demand">0</td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                        <tr>
+                            <td>dragon fruit</td>
+                            <td id="dragon-fruit-market-demand">0</td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="information-zone">
+
+        </div>
     </div>
-    <script src="scripts3.js"></script>
-</body>
-</html>
+    <script src="./Navegación de Lista_files/scripts3.js.download"></script>
+
+
+</body></html>
