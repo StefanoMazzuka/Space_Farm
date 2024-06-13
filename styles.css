@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 98%;
     height: 100%;
 }
 
@@ -51,7 +51,7 @@ button {
     line-height: normal;
     white-space: pre-wrap;
     font-size: 20px;
-    line-height: 0.4;
+    line-height: 0.5;
 }
 
 .right-gui-zone {
