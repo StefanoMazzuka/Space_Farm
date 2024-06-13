@@ -55,8 +55,8 @@ button {
 }
 
 .right-gui-zone {
-    border: 2px solid #0f0;
     display: grid;
+    border: 2px solid #0f0;
     grid-template-rows: 20% 80%;
 }
 
@@ -66,26 +66,25 @@ button {
 
 .play-zone {
     display: grid;
-    grid-template-columns: 35% 65%;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 10px 1px;
+    grid-template-columns: 50% 50%;
 }
 
 .left-play-zone {
-    border: 2px solid rgb(0, 0, 0);
-    padding: 20px;
-    padding-top: 30px;
-    margin: 10px;
+    display: grid;
+    border: 1px solid rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
 }
 
 .right-play-zone {
-    border: 2px solid rgb(0, 0, 0);
-    padding: 20px;
-    padding-top: 0px;
-    margin: 10px;
+    display: grid;
+    border: 1px solid rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
 }
 
 .market-demand-table td:nth-child(2), .market-demand-table th:nth-child(2){
@@ -100,11 +99,6 @@ table {
 
 .navigation {
     margin-bottom: 20px;
-}
-
-button {
-    padding: 10px;
-    font-size: 16px;
 }
 
 #currentIndex {
