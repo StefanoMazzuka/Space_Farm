@@ -51,7 +51,17 @@ button {
     line-height: normal;
     white-space: pre-wrap;
     font-size: 20px;
-    line-height: 0.5;
+    line-height: 0.55;
+}
+
+.fields-list-table {
+    display: inline-block;
+    white-space: pre-line;
+    line-height: 0.55;
+}
+
+.fields-list-table td:nth-child(2) {
+    text-align: left;
 }
 
 .right-gui-zone {
@@ -116,9 +126,18 @@ table.harvest-table {
     border: 1px solid black;
 }
 
+.store {
+    display: grid;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
+}
 
-
-
+table.fields-table {
+    border: 1px solid black;
+}
 
 
 
