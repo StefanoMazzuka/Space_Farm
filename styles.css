@@ -17,11 +17,16 @@ h2 {
     text-align: right;
 }
 
+th {
+    text-align: left;
+}
+
 button {
     font-family: monospace;
     font-size: 11px;
     width: auto;
     height: auto;
+    cursor: pointer;
 }
 
 .gui-zone {
@@ -123,6 +128,10 @@ table.products-table {
 }
 
 table.harvest-table {
+    border: 1px solid black;
+}
+
+table.market-demand-table {
     border: 1px solid black;
 }
 

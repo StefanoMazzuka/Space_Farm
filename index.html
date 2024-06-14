@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">                
-        <h2 id="total-coins">0 <img src="resources/coin.png"></h2>
+        <h2 id="total-coins">0<img src="resources/coin.png"></h2>
         <div class="gui-zone">
             <div class="left-gui-zone">
                 <div class="gui-info">
@@ -24,6 +24,10 @@
                             <tr>
                                 <td>fertilizing</td>
                                 <td id="fertilizing">no</td>
+                            </tr>
+                            <tr>
+                                <td>field</td>
+                                <td id="field-id">2</td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,33 +85,45 @@
                 </p>
             </div>
             <div class="right-play-zone">
-                <p class="p-title">market demand</p>
-                <table class="market-demand-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>market demand</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <td>wheat</td>
-                            <td id="wheat-market-demand">11110</td>
-                            <td><img src="resources/wheat.png"></td>
-                        </tr>
-                        <tr>
-                            <td>lettuce</td>
-                            <td id="lettuce-market-demand">0</td>
-                            <td><img src="resources/lettuce.png"></td>
-                        </tr>
-                        <tr>
-                            <td>corn</td>
-                            <td id="corn-market-demand">0</td>
-                            <td><img src="resources/corn.png"></td>
-                        </tr>
-                        <tr>
-                            <td>tomato</td>
-                            <td id="tomato-market-demand">0</td>
-                            <td><img src="resources/tomato.png"></td>
-                        </tr>
-                        <tr>
-                            <td>dragon fruit</td>
-                            <td id="dragon-fruit-market-demand">0</td>
-                            <td><img src="resources/dragon-fruit.png"></td>
+                            <td class="top">
+                                <table class="market-demand-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>wheat</td>
+                                            <td id="wheat-market-demand">0</td>
+                                            <td><img src="resources/wheat.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>lettuce</td>
+                                            <td id="lettuce-market-demand">0</td>
+                                            <td><img src="resources/lettuce.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>corn</td>
+                                            <td id="corn-market-demand">0</td>
+                                            <td><img src="resources/corn.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>tomato</td>
+                                            <td id="tomato-market-demand">0</td>
+                                            <td><img src="resources/tomato.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>dragon fruit</td>
+                                            <td id="dragon-fruit-market-demand">0</td>
+                                            <td><img src="resources/dragon_fruit.png"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,7 +137,6 @@
                     <tr>
                         <th>seeds</th>
                         <th>products</th>
-                        <th>harvest</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -132,27 +147,27 @@
                                     <tr>
                                         <td>wheat</td>
                                         <td id="seeds-wheat-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/wheat_seed.png"></td>
                                     </tr>
                                     <tr>
                                         <td>lettuce</td>
                                         <td id="seeds-lettuce-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/lettuce_seed.png"></td>
                                     </tr>
                                     <tr>
                                         <td>corn</td>
                                         <td id="seeds-corn-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/corn_seed.png"></td>
                                     </tr>
                                     <tr>
                                         <td>tomato</td>
                                         <td id="seeds-tomato-count">2220</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/tomato_seed.png"></td>
                                     </tr>
                                     <tr>
                                         <td>dragon fruit</td>
                                         <td id="seeds-dragon-fruit-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/dragon_fruit_seed.png"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -163,42 +178,53 @@
                                     <tr>
                                         <td>fertilizer</td>
                                         <td id="products-fertilizer-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/fertilizer.png"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="warehouse-table">
+                <thead>
+                    <tr>
+                        <th>harvest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
                         <td class="top">
                             <table class="harvest-table">
                                 <tbody>
                                     <tr>
                                         <td>wheat</td>
                                         <td id="harvest-wheat-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/wheat.png"></td>
                                         <td><button id="sell-wheat">sell</button></td>
                                     </tr>
                                     <tr>
                                         <td>lettuce</td>
                                         <td id="harvest-lettuce-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/lettuce.png"></td>
                                         <td><button id="sell-lettuce">sell</button></td>
                                     </tr>
                                     <tr>
                                         <td>corn</td>
                                         <td id="harvest-corn-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/corn.png"></td>
                                         <td><button id="sell-corn">sell</button></td>
                                     </tr>
                                     <tr>
                                         <td>tomato</td>
-                                        <td id="harvest-tomato-count">2220</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td id="harvest-tomato-count">0</td>
+                                        <td><img src="resources/tomato.png"></td>
                                         <td><button id="sell-tomato">sell</button></td>
                                     </tr>
                                     <tr>
                                         <td>dragon fruit</td>
                                         <td id="harvest-dragon-fruit-count">0</td>
-                                        <td><img src="resources/coin.png"></td>
+                                        <td><img src="resources/dragon_fruit.png"></td>
                                         <td><button id="sell-dragon-fruit">sell</button></td>
                                     </tr>
                                 </tbody>
@@ -211,11 +237,11 @@
 
         <div class="store">
             <p class="p-title">store</p>
-            <table class="warehouse-table">
+            <table class="store-table">
                 <thead>
                     <tr>
                         <th>seeds</th>
-                        <th>fields</th>
+                        <th>products</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -225,30 +251,35 @@
                                 <tbody>
                                     <tr>
                                         <td>wheat</td>
+                                        <td><img src="resources/wheat_seed.png"></td>
                                         <td>1</td>
                                         <td><img src="resources/coin.png"></td>
                                         <td><button id="buy-wheat">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>lettuce</td>
+                                        <td><img src="resources/lettuce_seed.png"></td>
                                         <td>5</td>
                                         <td><img src="resources/coin.png"></td>
                                         <td><button id="buy-lettuce">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>corn</td>
+                                        <td><img src="resources/corn_seed.png"></td>
                                         <td>10</td>
                                         <td><img src="resources/coin.png"></td>
                                         <td><button id="buy-corn">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>tomato</td>
+                                        <td><img src="resources/tomato_seed.png"></td>
                                         <td>20</td>
                                         <td><img src="resources/coin.png"></td>
                                         <td><button id="buy-tomato">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>dragon fruit</td>
+                                        <td><img src="resources/dragon_fruit_seed.png"></td>
                                         <td>50</td>
                                         <td><img src="resources/coin.png"></td>
                                         <td><button id="buy-dragon-fruit">buy</button></td>
@@ -257,25 +288,52 @@
                             </table>
                         </td>
                         <td class="top">
+                            <table class="products-table">
+                                <tbody>
+                                    <tr>
+                                        <td>fertilizer</td>
+                                        <td><img src="resources/fertilizer.png"></td>
+                                        <td>50</td>
+                                        <td><img src="resources/coin.png"></td>
+                                        <td><button id="buy-fertilizer">buy</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="store-table">
+                <thead>
+                    <tr>
+                        <th>fields</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="top">
                             <table class="fields-table">
                                 <tbody>
                                     <tr>
                                         <td>small 5x2</td>
+                                        <td><img src="resources/small_field.png"></td>
                                         <td>100</td>
-                                        <td><button id="buy-small-field">buy</button></td>
                                         <td><img src="resources/coin.png"></td>
+                                        <td><button id="buy-small-field">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>medium 5x5</td>
+                                        <td><img src="resources/medium_field.png"></td>
                                         <td>1000</td>
-                                        <td><button id="buy-medium-field">buy</button></td>
                                         <td><img src="resources/coin.png"></td>
+                                        <td><button id="buy-medium-field">buy</button></td>
                                     </tr>
                                     <tr>
                                         <td>large 10x5</td>
+                                        <td><img src="resources/large_field.png"></td>
                                         <td>5000</td>
-                                        <td><button id="buy-large-field">buy</button></td>
                                         <td><img src="resources/coin.png"></td>
+                                        <td><button id="buy-large-field">buy</button></td>
                                     </tr>
                                 </tbody>
                             </table>
