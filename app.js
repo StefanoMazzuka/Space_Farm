@@ -1,6 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
     const helloButton = document.getElementById("helloButton");
     const helloContainer = document.getElementById("helloContainer");
+    const fields = [
+        [1, 1, 1, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1]
+    ];
+
+// Convertir la lista a JSON y guardarla en localStorage
+localStorage.setItem('cachedData', JSON.stringify(data));
+
+// Recuperar los datos de localStorage y convertirlos de JSON a una lista de listas
+const cachedData = JSON.parse(localStorage.getItem('cachedData'));
+
+// Mostrar los datos en consola
+console.log(cachedData);
+
+
+
+
+
+
 
     // Function to load saved hellos from localStorage
     function loadHellos() {
