@@ -15,7 +15,7 @@ function plant(field_key, seed_name) {
         'lettuce': { count: 'warehouse_seeds_lettuce', time_to_harvest: 3, element_id: 'seeds-lettuce-count' },
         'corn': { count: 'warehouse_seeds_corn', time_to_harvest: 6, element_id: 'seeds-corn-count' },
         'tomato': { count: 'warehouse_seeds_tomato', time_to_harvest: 6, element_id: 'seeds-tomato-count' },
-        'dragon_fruit': { count: 'warehouse_seeds_dragon_fruit', time_to_harvest: 9, element_id: 'seeds-dragon-fruit-count' }
+        'dragon fruit': { count: 'warehouse_seeds_dragon_fruit', time_to_harvest: 9, element_id: 'seeds-dragon-fruit-count' }
     };
 
     let plot = fields[field_key].field.findIndex(plot => plot[0] === 0 && plot[1] === 0 && plot[2] === 'none' && plot[3] === 0);
@@ -47,7 +47,7 @@ function harvest(field_key) {
         'lettuce': { count: 'warehouse_harvest_lettuce', element_id: 'harvest-lettuce-count' },
         'corn': { count: 'warehouse_harvest_corn', element_id: 'harvest-corn-count' },
         'tomato': { count: 'warehouse_harvest_tomato', element_id: 'harvest-tomato-count' },
-        'dragon_fruit': { count: 'warehouse_harvest_dragon_fruit', element_id: 'harvest-dragon-fruit-count' }
+        'dragon fruit': { count: 'warehouse_harvest_dragon_fruit', element_id: 'harvest-dragon-fruit-count' }
     };
 
     let fertilized = fields[field_key].info.fertilized;
@@ -90,7 +90,7 @@ const image_paths = {
     'lettuce': 'resources/lettuce.png',
     'corn': 'resources/corn.png',
     'tomato': 'resources/tomato.png',
-    'dragon_fruit': 'resources/dragon_fruit.png',
+    'dragon fruit': 'resources/dragon_fruit.png',
     'none': 'resources/none.png',
     '0': 'resources/grow_0.png',
     '1': 'resources/grow_1.png',

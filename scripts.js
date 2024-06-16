@@ -9,11 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const plant_btn       = document.getElementById('plant-btn');
     const harvesting_btn  = document.getElementById('harvesting-btn');
     const fertilizing_btn = document.getElementById('fertilizing-btn');
+    const reset_btn       = document.getElementById('reset-btn');
 
-    addField(20);
-    addField(10);
-    startClock();
-    updateFieldView(0);
+    // warehouse
+    const sell_wheat_btn        = document.getElementById('sell-wheat-btn');
+    const sell_lettuce_btn      = document.getElementById('sell-lettuce-btn');
+    const sell_corn_btn         = document.getElementById('sell-corn-btn');
+    const sell_tomato_btn       = document.getElementById('sell-tomato-btn');
+    const sell_dragon_fruit_btn = document.getElementById('sell-dragon-fruit-btn');
+
+    // store
+    const buy_wheat_btn        = document.getElementById('buy-wheat-btn');
+    const buy_lettuce_btn      = document.getElementById('buy-lettuce-btn');
+    const buy_corn_btn         = document.getElementById('buy-corn-btn');
+    const buy_tomato_btn       = document.getElementById('buy-tomato-btn');
+    const buy_dragon_fruit_btn = document.getElementById('buy-dragon-fruit-btn');
+
+    const buy_fertilizer_btn = document.getElementById('buy-fertilizer-btn');
+
+    const buy_small_field_btn  = document.getElementById('buy-small-field-btn');
+    const buy_medium_field_btn = document.getElementById('buy-medium-field-btn');
+    const buy_large_field_btn  = document.getElementById('buy-large-field-btn');
 
     // play zone
     prev_field_btn.addEventListener('click', () => {
@@ -45,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     sleep_btn.addEventListener('click', () => {
-        document.getElementById('sleep').play();
+        playSound('sleep');
         nextDay();
     });
 
@@ -61,8 +77,55 @@ document.addEventListener('DOMContentLoaded', () => {
         fertilizing(current_field);
     });
 
-    // Mostrar el objeto fields en la consola
-    console.log(JSON.stringify(fields, null, 2));
+    reset_btn.addEventListener('click', () => {
+        localStorage.clear();
+
+        coins = 0;
+        day   = 1;
+
+        // seeds
+        warehouse_seeds_wheat        = 10;
+        warehouse_seeds_lettuce      = 0;
+        warehouse_seeds_corn         = 0;
+        warehouse_seeds_tomato       = 0;
+        warehouse_seeds_dragon_fruit = 0;
+
+        // products
+        warehouse_products_fertilizer = 0;
+
+        // harvest
+        warehouse_harvest_wheat        = 0;
+        warehouse_harvest_lettuce      = 0;
+        warehouse_harvest_corn         = 0;
+        warehouse_harvest_tomato       = 0;
+        warehouse_harvest_dragon_fruit = 0;
+
+        // fields
+        fields = {}
+
+        saveToLocalStorage();
+        loadFromLocalStorage();
+    });
+
+    // warehouse
+    sell_wheat_btn.addEventListener('click', () => sellProduct('wheat', 'warehouse_harvest_wheat', 'harvest-wheat-count'));
+    sell_lettuce_btn.addEventListener('click', () => sellProduct('lettuce', 'warehouse_harvest_lettuce', 'harvest-lettuce-count'));
+    sell_corn_btn.addEventListener('click', () => sellProduct('corn', 'warehouse_harvest_corn', 'harvest-corn-count'));
+    sell_tomato_btn.addEventListener('click', () => sellProduct('tomato', 'warehouse_harvest_tomato', 'harvest-tomato-count'));
+    sell_dragon_fruit_btn.addEventListener('click', () => sellProduct('dragon fruit', 'warehouse_harvest_dragon_fruit', 'harvest-dragon-fruit-count'));
+
+    // store
+    buy_wheat_btn.addEventListener('click', () => buyProduct(1, 'warehouse_seeds_wheat', 'seeds-wheat-count'));
+    buy_lettuce_btn.addEventListener('click', () => buyProduct(5, 'warehouse_seeds_lettuce', 'seeds-lettuce-count'));
+    buy_corn_btn.addEventListener('click', () => buyProduct(10, 'warehouse_seeds_corn', 'seeds-corn-count'));
+    buy_tomato_btn.addEventListener('click', () => buyProduct(20, 'warehouse_seeds_tomato', 'seeds-tomato-count'));
+    buy_dragon_fruit_btn.addEventListener('click', () => buyProduct(50, 'warehouse_seeds_dragon_fruit', 'seeds-dragon-fruit-count'));
+
+    buy_fertilizer_btn.addEventListener('click', () => buyProduct(50, 'warehouse_products_fertilizer', 'products-fertilizer-count'));
+
+    buy_small_field_btn.addEventListener('click', () => buyField(100, 'small'));
+    buy_medium_field_btn.addEventListener('click', () => buyField(30, 'small'));
+    buy_large_field_btn.addEventListener('click', () => buyField(50, 'small'));
 
     // LocalStorage
     function saveToLocalStorage() {
@@ -89,14 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // fields
         localStorage.setItem('fields', JSON.stringify(fields));
-
-        console.log(warehouse_harvest_wheat)
     }
 
     function loadFromLocalStorage() {
         // play zone
         coins = parseInt(localStorage.getItem('coins'));
         day   = parseInt(localStorage.getItem('day'));
+
+        if (isNaN(coins)) coins = 0;
+        if (isNaN(day)) day = 1;
+
         document.getElementById('total-coins').textContent = coins;
         document.getElementById('day').textContent         = day;
         
@@ -107,6 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
         warehouse_seeds_tomato       = parseInt(localStorage.getItem('warehouse_seeds_tomato'));
         warehouse_seeds_dragon_fruit = parseInt(localStorage.getItem('warehouse_seeds_dragon_fruit'));
 
+        if (isNaN(warehouse_seeds_wheat)) warehouse_seeds_wheat = 10;
+        if (isNaN(warehouse_seeds_lettuce)) warehouse_seeds_lettuce = 0;
+        if (isNaN(warehouse_seeds_corn)) warehouse_seeds_corn = 0;
+        if (isNaN(warehouse_seeds_tomato)) warehouse_seeds_tomato = 0;
+        if (isNaN(warehouse_seeds_dragon_fruit)) warehouse_seeds_dragon_fruit = 0;
+
         document.getElementById('seeds-wheat-count').textContent        = warehouse_seeds_wheat;
         document.getElementById('seeds-lettuce-count').textContent      = warehouse_seeds_lettuce;
         document.getElementById('seeds-corn-count').textContent         = warehouse_seeds_corn;
@@ -115,6 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // products
         warehouse_products_fertilizer = parseInt(localStorage.getItem('warehouse_products_fertilizer'));
+
+        if (isNaN(warehouse_products_fertilizer)) warehouse_products_fertilizer = 0;
 
         document.getElementById('products-fertilizer-count').textContent = warehouse_products_fertilizer;
         
@@ -125,6 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         warehouse_harvest_tomato       = parseInt(localStorage.getItem('warehouse_harvest_tomato'));
         warehouse_harvest_dragon_fruit = parseInt(localStorage.getItem('warehouse_harvest_dragon_fruit'));
 
+        if (isNaN(warehouse_harvest_wheat)) warehouse_harvest_wheat = 0;
+        if (isNaN(warehouse_harvest_lettuce)) warehouse_harvest_lettuce = 0;
+        if (isNaN(warehouse_harvest_corn)) warehouse_harvest_corn = 0;
+        if (isNaN(warehouse_harvest_tomato)) warehouse_harvest_tomato = 0;
+        if (isNaN(warehouse_harvest_dragon_fruit)) warehouse_harvest_dragon_fruit = 0;
+
         document.getElementById('harvest-wheat-count').textContent        = warehouse_harvest_wheat;
         document.getElementById('harvest-lettuce-count').textContent      = warehouse_harvest_lettuce;
         document.getElementById('harvest-corn-count').textContent         = warehouse_harvest_corn;
@@ -133,8 +212,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // fields
         fields = JSON.parse(localStorage.getItem('fields'));
+
+        if (Object.keys(fields).length === 0) addField(20);
+
+        clearInterval(clock);
+        hour = 0;
+        minute = 0;
+        startClock();
+        updateMarketView();
+        updateFieldView(0);
+        saveToLocalStorage();
     }
 
-    window.addEventListener('beforeunload', saveToLocalStorage);
     window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+    window.addEventListener('beforeunload', saveToLocalStorage);
 });

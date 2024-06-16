@@ -7,6 +7,7 @@ function nextDay() {
     growFields();
     startClock();
     updateFieldView(current_field);
+    updateMarket();
 }
 
 function advanceTime() {
@@ -18,13 +19,7 @@ function advanceTime() {
             hour = 0;
             let count = 0;
             nextDay();
-            function playChangingDaySound() {
-                if (count < 3) {
-                    document.getElementById('changing-day-sound').play();
-                    count++;
-                    document.getElementById('changing-day-sound').addEventListener('ended', playChangingDaySound, { once: true });
-                }
-            }
+            playSound('changing-day-sound');
             playChangingDaySound();
         }
     }
