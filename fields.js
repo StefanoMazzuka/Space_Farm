@@ -80,7 +80,6 @@ function growFields() {
                 let new_growing_state = Math.floor(elapsed_days / (plot[1] / 3));
                 plot[0] = new_growing_state;
             }
-            console.log(id, plot); // TODO delete
         });
     }
 }
