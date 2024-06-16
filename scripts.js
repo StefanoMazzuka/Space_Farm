@@ -213,7 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // fields
         fields = JSON.parse(localStorage.getItem('fields'));
 
-        if (Object.keys(fields).length === 0) addField(20);
+        if (Object.keys(fields).length === 0) {
+            fields = {}
+            addField(20);
+        }
 
         clearInterval(clock);
         hour = 0;
