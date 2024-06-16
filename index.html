@@ -14,8 +14,13 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td>progress</td>
-                                <td id="progress">0%</td>
+                                <td>day</td>
+                                <td id="day">1</td>
+                            </tr>
+                            <tr>
+                                <td>clock</td>
+                                <td id="clock">00:00H</td>
+                                <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
                             </tr>
                             <tr>
                                 <td>product</td>
@@ -27,17 +32,12 @@
                             </tr>
                             <tr>
                                 <td>field</td>
-                                <td id="field-id">2</td>
+                                <td id="field-id">1</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="field-gui" id="field">■■■■■□□□□□
-□□□□□□□□□□
-□□□□□□□□□□
-□□□□□□□□□□
-□□□□□□□□□□
-                </div>
+                <div class="field-gui" id="field"></div>
             </div>
             <div class="right-gui-zone">
                 <p class="p-title">fields</p>
@@ -79,6 +79,9 @@
                     </tbody>
                 </table>
                 <p>
+                    <button id="sleep-btn">sleep
+                        <audio id="sleep" src="resources/sleep.mp3" preload="auto"></audio>
+                    </button>
                     <button id="plant-btn">plant</button>
                     <button id="harvesting-btn">harvesting</button>
                     <button id="fertilizing-btn">fertilizing</button>
@@ -354,6 +357,7 @@
         </div>
     </div>
     <script src="globals.js"></script>
+    <script src="calendar.js"></script>
     <script src="fields.js"></script>
     <script src="scripts.js"></script>
 </body></html>

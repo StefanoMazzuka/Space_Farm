@@ -5,55 +5,31 @@ function addField(size) {
         info: {
             fertilized: false
         },
-        field: Array(size).fill([0, 'none', 0])
+        field: Array(size).fill([0, 0, 'none', 0]) // growing_state [0-2], time_to_harvest, seed_name, planted_day
     };
 }
 
 function plant(field_key, seed_name) {
-    let plot = fields[field_key].field.findIndex(element => element[0] === 0 && element[1] === 'none' && element[2] === 0);
+    const seeds = {
+        'wheat': { count: 'warehouse_seeds_wheat', time_to_harvest: 3, element_id: 'seeds-wheat-count' },
+        'lettuce': { count: 'warehouse_seeds_lettuce', time_to_harvest: 3, element_id: 'seeds-lettuce-count' },
+        'corn': { count: 'warehouse_seeds_corn', time_to_harvest: 6, element_id: 'seeds-corn-count' },
+        'tomato': { count: 'warehouse_seeds_tomato', time_to_harvest: 6, element_id: 'seeds-tomato-count' },
+        'dragon_fruit': { count: 'warehouse_seeds_dragon_fruit', time_to_harvest: 9, element_id: 'seeds-dragon-fruit-count' }
+    };
+
+    let plot = fields[field_key].field.findIndex(plot => plot[0] === 0 && plot[1] === 0 && plot[2] === 'none' && plot[3] === 0);
     if (plot !== -1) {
-        let planted_time = new Date().getTime();
-        let plot_info = [0, seed_name, planted_time];
-        switch(seed_name) {
-            case 'wheat':
-                if (warehouse_seeds_wheat > 0) {
-                    warehouse_seeds_wheat--;
-                    document.getElementById('seeds-wheat-count').textContent = warehouse_seeds_wheat;
-                    fields[field_key].field[plot] = plot_info;
-                }
-                break;
-            case 'lettuce':
-                if (warehouse_seeds_lettuce > 0) {
-                    warehouse_seeds_lettuce--;
-                    document.getElementById('seeds-lettuce-count').textContent = warehouse_seeds_lettuce;
-                    fields[field_key].field[plot] = plot_info;
-                }
-                break;
-            case 'corn':
-                if (warehouse_seeds_corn > 0) {
-                    warehouse_seeds_corn--;
-                    document.getElementById('seeds-corn-count').textContent = warehouse_seeds_corn;
-                    fields[field_key].field[plot] = plot_info;
-                }
-                break;
-            case 'tomato':
-                if (warehouse_seeds_tomato > 0) {
-                    warehouse_seeds_tomato--;
-                    document.getElementById('seeds-tomato-count').textContent = warehouse_seeds_tomato;
-                    fields[field_key].field[plot] = plot_info;
-                }
-                break;
-            case 'dragon_fruit':
-                if (warehouse_seeds_dragon_fruit > 0) {
-                    warehouse_seeds_dragon_fruit--;
-                    document.getElementById('seeds-dragon-fruit-count').textContent = warehouse_seeds_dragon_fruit;
-                    fields[field_key].field[plot] = plot_info;
-                }
-                break;
-            default:
-                break;
+        let planted_day = day;
+        let seed = seeds[seed_name];
+        if (window[seed.count] > 0) {
+            window[seed.count]--;
+            document.getElementById(seed.element_id).textContent = window[seed.count];
+            fields[field_key].field[plot] = [0, seed.time_to_harvest, seed_name, planted_day];
         }
     }
+
+    updateFieldView(field_key);
 }
 
 function fertilizing(field_key) {
@@ -66,42 +42,26 @@ function fertilizing(field_key) {
 }
 
 function harvest(field_key) {
+    const harvests = {
+        'wheat': { count: 'warehouse_harvest_wheat', element_id: 'harvest-wheat-count' },
+        'lettuce': { count: 'warehouse_harvest_lettuce', element_id: 'harvest-lettuce-count' },
+        'corn': { count: 'warehouse_harvest_corn', element_id: 'harvest-corn-count' },
+        'tomato': { count: 'warehouse_harvest_tomato', element_id: 'harvest-tomato-count' },
+        'dragon_fruit': { count: 'warehouse_harvest_dragon_fruit', element_id: 'harvest-dragon-fruit-count' }
+    };
+
     let fertilized = fields[field_key].info.fertilized;
     fields[field_key].field.forEach((plot, index) => {
         if (plot[0] == 2) {
-            switch(plot[1]) {
-                case 'wheat':
-                    if (fertilized && (Math.random() < 0.4)) warehouse_harvest_wheat += 2;
-                    else warehouse_harvest_wheat++;
-                    document.getElementById('harvest-wheat-count').textContent = warehouse_harvest_wheat;
-                    fields[field_key].field[index] = [0, 'none', 0]
-                    break;
-                case 'lettuce':
-                    if (fertilized && (Math.random() < 0.4)) warehouse_harvest_lettuce += 2;
-                    else warehouse_harvest_lettuce++;
-                    document.getElementById('harvest-lettuce-count').textContent = warehouse_harvest_lettuce;
-                    fields[field_key].field[index] = [0, 'none', 0]
-                    break;
-                case 'corn':
-                    if (fertilized && (Math.random() < 0.4)) warehouse_harvest_corn += 2;
-                    else warehouse_harvest_corn++;
-                    document.getElementById('harvest-corn-count').textContent = warehouse_harvest_corn;
-                    fields[field_key].field[index] = [0, 'none', 0]
-                    break;
-                case 'tomato':
-                    if (fertilized && (Math.random() < 0.4)) warehouse_harvest_tomato += 2;
-                    else warehouse_harvest_tomato++;
-                    document.getElementById('harvest-tomato-count').textContent = warehouse_harvest_tomato;
-                    fields[field_key].field[index] = [0, 'none', 0]
-                    break;
-                case 'dragon_fruit':
-                    if (fertilized && (Math.random() < 0.4)) warehouse_harvest_dragon_fruit += 2;
-                    else warehouse_harvest_dragon_fruit++;
-                    document.getElementById('harvest-dragon-fruit-count').textContent = warehouse_harvest_dragon_fruit;
-                    fields[field_key].field[index] = [0, 'none', 0]
-                    break;
-                default:
-                    break;
+            let crop = plot[2];
+            if (crop in harvests) {
+                if (fertilized && (Math.random() < 0.4)) {
+                    window[harvests[crop].count] += 2;
+                } else {
+                    window[harvests[crop].count]++;
+                }
+                document.getElementById(harvests[crop].element_id).textContent = window[harvests[crop].count];
+                fields[field_key].field[index] = [0, 0, 'none', 0];
             }
         }
     });
@@ -109,11 +69,47 @@ function harvest(field_key) {
     fields[field_key].info.fertilized = false;
     document.getElementById('fertilizing').textContent = 'no';
 
-    //updateFieldView();
+    updateFieldView(field_key);
 }
 
-window.fields = fields;
-window.addField = addField;
-window.plant = plant;
-window.fertilizing = fertilizing
-window.harvest = harvest
+function growFields() {
+    for (const id in fields) {
+        fields[id].field.forEach(plot => {
+            if (plot[2] != 'none' && plot[0] < 2) {
+                let elapsed_days = day - plot[3];
+                let new_growing_state = Math.floor(elapsed_days / (plot[1] / 3));
+                plot[0] = new_growing_state;
+            }
+            console.log(id, plot); // TODO delete
+        });
+    }
+}
+
+const image_paths = {
+    'wheat': 'resources/wheat.png',
+    'lettuce': 'resources/lettuce.png',
+    'corn': 'resources/corn.png',
+    'tomato': 'resources/tomato.png',
+    'dragon_fruit': 'resources/dragon_fruit.png',
+    'none': 'resources/none.png',
+    '0': 'resources/grow_0.png',
+    '1': 'resources/grow_1.png',
+};
+
+function updateFieldView(field_key) {
+    const grid = document.getElementById('field');
+    grid.innerHTML = '';
+
+    fields[field_key].field.forEach(plot => {
+        let image;
+        if (plot[2] == 'none') {image = 'none'}
+        else if (plot[0] < 2) image = plot[0];
+        else image = plot[2];
+
+        const img = document.createElement('img');
+        img.src = image_paths[image];
+        img.alt = `Image ${image}`;
+        img.classList.add('grid-image');
+        grid.appendChild(img);
+    });
+}

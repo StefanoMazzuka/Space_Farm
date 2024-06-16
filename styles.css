@@ -32,10 +32,9 @@ button {
 .gui-zone {
     display: grid;
     grid-template-columns: 70% 30%;
-    background-color: #000;
-    color: #0f0;
+    color: blue;
     padding: 5px;
-    border: 2px solid #0f0;
+    border: 2px solid blue;
     overflow-y: auto;
 }
 
@@ -50,13 +49,10 @@ button {
 }
 
 .field-gui {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle; 
-    line-height: normal;
-    white-space: pre-wrap;
-    font-size: 20px;
-    line-height: 0.55;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(10, 12px);
+    gap: 1px;
 }
 
 .fields-list-table {
@@ -71,7 +67,7 @@ button {
 
 .right-gui-zone {
     display: grid;
-    border: 2px solid #0f0;
+    border: 2px solid blue;
     grid-template-rows: 20% 80%;
 }
 
