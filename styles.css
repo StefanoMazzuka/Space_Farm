@@ -32,9 +32,8 @@ button {
 .gui-zone {
     display: grid;
     grid-template-columns: 70% 30%;
-    color: blue;
     padding: 5px;
-    border: 2px solid blue;
+    border: 2px solid black;
     overflow-y: auto;
 }
 
@@ -53,6 +52,7 @@ button {
     justify-content: center;
     grid-template-columns: repeat(10, 12px);
     gap: 1px;
+    margin: 10px;
 }
 
 .fields-list-table {
@@ -67,7 +67,7 @@ button {
 
 .right-gui-zone {
     display: grid;
-    border: 2px solid blue;
+    border: 2px solid black;
     grid-template-rows: 20% 80%;
 }
 
