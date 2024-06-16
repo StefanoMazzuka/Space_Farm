@@ -211,12 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('harvest-dragon-fruit-count').textContent = warehouse_harvest_dragon_fruit;
 
         // fields
-        fields_load = JSON.parse(localStorage.getItem('fields'));
+        fields_load = localStorage.getItem('fields');
 
-        if (Object.keys(fields_load).isNaN) {
-            fields = {}
+        fields = fields_load ? JSON.parse(fields_load): {};
+
+        if (Object.keys(fields).length === 0) {
             addField(20);
-        } else fields = fields_load;
+        }
 
         clearInterval(clock);
         hour = 0;
