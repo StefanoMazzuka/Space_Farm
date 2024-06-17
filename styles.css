@@ -50,19 +50,14 @@ button {
 .field-gui {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(10, 12px);
+    grid-template-columns: repeat(10, 10px);
     gap: 1px;
     margin: 10px;
 }
 
-.fields-list-table {
-    display: inline-block;
-    white-space: pre-line;
-    line-height: 0.7;
-}
-
-.fields-list-table td:nth-child(2) {
-    text-align: left;
+.map {
+    display: grid;
+    justify-content: center;
 }
 
 .right-gui-zone {

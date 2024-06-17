@@ -20,7 +20,6 @@ function advanceTime() {
             let count = 0;
             nextDay();
             playSound('changing-day-sound');
-            playChangingDaySound();
         }
     }
     document.getElementById('clock').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}H`;

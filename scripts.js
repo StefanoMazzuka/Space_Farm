@@ -79,9 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     reset_btn.addEventListener('click', () => {
         localStorage.clear();
-
-        coins = 0;
-        day   = 1;
+        
+        hour   = 0;
+        minute = 0;
+        coins  = 0;
+        day    = 1;
 
         // seeds
         warehouse_seeds_wheat        = 10;
@@ -115,21 +117,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sell_dragon_fruit_btn.addEventListener('click', () => sellProduct('dragon fruit', 'warehouse_harvest_dragon_fruit', 'harvest-dragon-fruit-count'));
 
     // store
-    buy_wheat_btn.addEventListener('click', () => buyProduct(1, 'warehouse_seeds_wheat', 'seeds-wheat-count'));
-    buy_lettuce_btn.addEventListener('click', () => buyProduct(5, 'warehouse_seeds_lettuce', 'seeds-lettuce-count'));
-    buy_corn_btn.addEventListener('click', () => buyProduct(10, 'warehouse_seeds_corn', 'seeds-corn-count'));
-    buy_tomato_btn.addEventListener('click', () => buyProduct(20, 'warehouse_seeds_tomato', 'seeds-tomato-count'));
-    buy_dragon_fruit_btn.addEventListener('click', () => buyProduct(50, 'warehouse_seeds_dragon_fruit', 'seeds-dragon-fruit-count'));
+    buy_wheat_btn.addEventListener('click', () => buyProduct('wheat', 'warehouse_seeds_wheat', 'seeds-wheat-count'));
+    buy_lettuce_btn.addEventListener('click', () => buyProduct('lettuce', 'warehouse_seeds_lettuce', 'seeds-lettuce-count'));
+    buy_corn_btn.addEventListener('click', () => buyProduct('corn', 'warehouse_seeds_corn', 'seeds-corn-count'));
+    buy_tomato_btn.addEventListener('click', () => buyProduct('tomato', 'warehouse_seeds_tomato', 'seeds-tomato-count'));
+    buy_dragon_fruit_btn.addEventListener('click', () => buyProduct('dragon fruit', 'warehouse_seeds_dragon_fruit', 'seeds-dragon-fruit-count'));
 
     buy_fertilizer_btn.addEventListener('click', () => buyProduct(50, 'warehouse_products_fertilizer', 'products-fertilizer-count'));
 
     buy_small_field_btn.addEventListener('click', () => buyField(100, 'small'));
-    buy_medium_field_btn.addEventListener('click', () => buyField(30, 'small'));
-    buy_large_field_btn.addEventListener('click', () => buyField(50, 'small'));
+    buy_medium_field_btn.addEventListener('click', () => buyField(1000, 'mendium'));
+    buy_large_field_btn.addEventListener('click', () => buyField(5000, 'large'));
 
     // LocalStorage
     function saveToLocalStorage() {
         // play zone
+        localStorage.setItem('hour', hour.toString());
+        localStorage.setItem('minute', minute.toString());
         localStorage.setItem('coins', coins.toString());
         localStorage.setItem('day', day.toString());
 
@@ -156,9 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadFromLocalStorage() {
         // play zone
-        coins = parseInt(localStorage.getItem('coins'));
-        day   = parseInt(localStorage.getItem('day'));
+        hour   = parseInt(localStorage.getItem('hour'));
+        minute = parseInt(localStorage.getItem('minute'));
+        coins  = parseInt(localStorage.getItem('coins'));
+        day    = parseInt(localStorage.getItem('day'));
 
+        if (isNaN(hour)) hour = 0;
+        if (isNaN(minute)) minute = 0;
         if (isNaN(coins)) coins = 0;
         if (isNaN(day)) day = 1;
 
@@ -220,8 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         clearInterval(clock);
-        hour = 0;
-        minute = 0;
         startClock();
         updateMarketView();
         updateFieldView(0);
