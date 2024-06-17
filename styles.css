@@ -50,7 +50,7 @@ button {
 .field-gui {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(10, 10px);
+    grid-template-columns: repeat(10, 9px);
     gap: 1px;
     margin: 10px;
 }
