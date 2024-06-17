@@ -117,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
     sell_dragon_fruit_btn.addEventListener('click', () => sellProduct('dragon fruit', 'warehouse_harvest_dragon_fruit', 'harvest-dragon-fruit-count'));
 
     // store
-    buy_wheat_btn.addEventListener('click', () => buyProduct('wheat', 'warehouse_seeds_wheat', 'seeds-wheat-count'));
-    buy_lettuce_btn.addEventListener('click', () => buyProduct('lettuce', 'warehouse_seeds_lettuce', 'seeds-lettuce-count'));
-    buy_corn_btn.addEventListener('click', () => buyProduct('corn', 'warehouse_seeds_corn', 'seeds-corn-count'));
-    buy_tomato_btn.addEventListener('click', () => buyProduct('tomato', 'warehouse_seeds_tomato', 'seeds-tomato-count'));
-    buy_dragon_fruit_btn.addEventListener('click', () => buyProduct('dragon fruit', 'warehouse_seeds_dragon_fruit', 'seeds-dragon-fruit-count'));
+    buy_wheat_btn.addEventListener('click', () => buySeeds('wheat', 'warehouse_seeds_wheat', 'seeds-wheat-count'));
+    buy_lettuce_btn.addEventListener('click', () => buySeeds('lettuce', 'warehouse_seeds_lettuce', 'seeds-lettuce-count'));
+    buy_corn_btn.addEventListener('click', () => buySeeds('corn', 'warehouse_seeds_corn', 'seeds-corn-count'));
+    buy_tomato_btn.addEventListener('click', () => buySeeds('tomato', 'warehouse_seeds_tomato', 'seeds-tomato-count'));
+    buy_dragon_fruit_btn.addEventListener('click', () => buySeeds('dragon fruit', 'warehouse_seeds_dragon_fruit', 'seeds-dragon-fruit-count'));
 
-    buy_fertilizer_btn.addEventListener('click', () => buyProduct(50, 'warehouse_products_fertilizer', 'products-fertilizer-count'));
+    buy_fertilizer_btn.addEventListener('click', () => buyProduct('fertilizer', 'warehouse_products_fertilizer', 'products-fertilizer-count'));
 
     buy_small_field_btn.addEventListener('click', () => buyField(100, 'small'));
     buy_medium_field_btn.addEventListener('click', () => buyField(1000, 'mendium'));
