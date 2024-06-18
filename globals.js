@@ -1,44 +1,101 @@
+var image_paths = {
+  'wheat': 'resources/wheat.png',
+  'lettuce': 'resources/lettuce.png',
+  'corn': 'resources/corn.png',
+  'tomato': 'resources/tomato.png',
+  'dragonfruit': 'resources/dragon-fruit.png',
+  'wheat-seed': 'resources/wheat-seed.png',
+  'lettuce-seed': 'resources/lettuce-seed.png',
+  'corn-seed': 'resources/corn-seed.png',
+  'tomato-seed': 'resources/tomato-seed.png',
+  'dragonfruit-seed': 'resources/dragonfruit-seed.png',
+  'fertilizer': 'resources/fertilizer.png',
+  'none': 'resources/none.png',
+  '0': 'resources/grow-0.png',
+  '1': 'resources/grow-1.png',
+};
+
 var coins = 0;
+var fields = {};
 
 // play zone
 var clock;
-var time_scale    = 500;
-var hour          = 0;
-var minute        = 0;
+var time_scale = 500;
+var hour       = 0;
+var minute     = 0;
 var day;
-var current_field = 0;
-var current_seed  = 0;
-var seeds_list    = ['wheat', 'lettuce', 'corn', 'tomato', 'dragon fruit']
+var current_field = 'field-1';
+var current_seed;
 
 var seeds = {
-    wheat:        { name: 'wheat',        buy_price: 100,  sell_price: 12,  seed_stock_count: 7,   harvest_stock_count: 17 },
-    lettuce:      { name: 'lettuce',      buy_price: 200,  sell_price: 24,  seed_stock_count: 19,  harvest_stock_count: 29 },
-    corn:         { name: 'corn',         buy_price: 400,  sell_price: 48,  seed_stock_count: 43,  harvest_stock_count: 53 },
-    tomato:       { name: 'tomato',       buy_price: 800,  sell_price: 96,  seed_stock_count: 91,  harvest_stock_count: 101 },
-    dragon_fruit: { name: 'dragon fruit', buy_price: 1600, sell_price: 192, seed_stock_count: 187, harvest_stock_count: 197 }
+  'wheat': { 
+    name: 'wheat',
+    buy_price: 100,
+    stock: 5,
+    time_to_harvest: 3
+  },
+  'lettuce': {
+    name: 'lettuce',
+    buy_price: 200,
+    stock: 0,
+    time_to_harvest: 3
+  },
+  'corn': {
+    name: 'corn',
+    buy_price: 400,
+    stock: 0,
+    time_to_harvest: 6
+  },
+  'tomato': {
+    name: 'tomato',
+    buy_price: 800,
+    stock: 0,
+    time_to_harvest: 6
+  },
+  'dragonfruit': {
+    name: 'dragon fruit',
+    buy_price: 1600,
+    stock: 0,
+    time_to_harvest: 9
   }
-// market demand
-var market_demand_wheat;
-var market_demand_lettuce;
-var market_demand_corn;
-var market_demand_tomato;
-var market_demand_dragon_fruit;
+}
 
-// warehouse
+var harvest = {
+  'wheat': { 
+    name: 'wheat',
+    buy_price: 100,
+    sell_price: 12,
+    stock: 0
+  },
+  'lettuce': {
+    name: 'lettuce',
+    buy_price: 200,
+    sell_price: 24,
+    stock: 0
+  },
+  'corn': {
+    name: 'corn',
+    buy_price: 400,
+    sell_price: 48,
+    stock: 0
+  },
+  'tomato': {
+    name: 'tomato',
+    buy_price: 800,
+    sell_price: 96,
+    stock: 0
+  },
+  'dragonfruit': {
+    name: 'dragon fruit',
+    buy_price: 1600,
+    sell_price: 192,
+    stock: 0
+  }
+}
 
-// seeds
-var warehouse_seeds_wheat;
-var warehouse_seeds_lettuce;
-var warehouse_seeds_corn;
-var warehouse_seeds_tomato;
-var warehouse_seeds_dragon_fruit;
-
-// products
-var warehouse_products_fertilizer;
-
-// harvest
-var warehouse_harvest_wheat;
-var warehouse_harvest_lettuce;
-var warehouse_harvest_corn;
-var warehouse_harvest_tomato;
-var warehouse_harvest_dragon_fruit;
+var products = {
+  'fertilizer': { name: 'fertilizer',
+    buy_price: 50,
+    stock: 0
+  }
+}

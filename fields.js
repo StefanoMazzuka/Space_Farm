@@ -1,31 +1,62 @@
-var fields = {};
+const fields_divs = document.querySelectorAll('.field');
 
-function addField(size) {
-    fields[Object.keys(fields).length] = {
-        info: {
-            fertilized: false
-        },
-        field: Array(size).fill([0, 0, 'none', 0]) // growing_state [0-2], time_to_harvest, seed_name, planted_day
+fields_divs.forEach(field_div => {
+    field_div.addEventListener('click', () => {
+        fields_divs.forEach(i => i.classList.remove('red-border'));
+        field_div.classList.add('red-border');
+        current_field = field_div.id;
+        console.log(current_field); // TODO Delete
+    });
+});
+
+function updateFieldView(field_key) {
+    const grid = document.getElementById(field_key);
+    grid.innerHTML = '';
+
+    fields[field_key].field.forEach(plot => {
+        let image;
+        if (plot[2] == 'none') {image = 'none'}
+        else if (plot[0] < 2) image = plot[0];
+        else image = plot[2];
+
+        const img = document.createElement('img');
+        img.src = image_paths[image];
+        img.classList.add('grid-image');
+        grid.appendChild(img);
+    });
+}
+
+function initializeFields() {
+    const fields_config = {
+        'field-1': 20,
+        'field-2': 60,
+        'field-3': 40,
+        'field-4': 20
     };
+
+    for (const [key, size] of Object.entries(fields_config)) {
+        fields[key] = {
+            info: {
+                fertilized: false
+            },
+            field: Array(size).fill([0, 0, 'none', 0])
+        };
+
+        updateFieldView(key);
+    }
 }
 
 function plant(field_key, seed_name) {
-    const seeds = {
-        'wheat': { count: 'warehouse_seeds_wheat', time_to_harvest: 3, element_id: 'seeds-wheat-count' },
-        'lettuce': { count: 'warehouse_seeds_lettuce', time_to_harvest: 3, element_id: 'seeds-lettuce-count' },
-        'corn': { count: 'warehouse_seeds_corn', time_to_harvest: 6, element_id: 'seeds-corn-count' },
-        'tomato': { count: 'warehouse_seeds_tomato', time_to_harvest: 6, element_id: 'seeds-tomato-count' },
-        'dragon fruit': { count: 'warehouse_seeds_dragon_fruit', time_to_harvest: 9, element_id: 'seeds-dragon-fruit-count' }
-    };
-
+    let seed = seeds[seed_name];
+    console.log(seed)
     let plot = fields[field_key].field.findIndex(plot => plot[0] === 0 && plot[1] === 0 && plot[2] === 'none' && plot[3] === 0);
     if (plot !== -1) {
         let planted_day = day;
-        let seed = seeds[seed_name];
-        if (window[seed.count] > 0) {
-            window[seed.count]--;
-            document.getElementById(seed.element_id).textContent = window[seed.count];
-            fields[field_key].field[plot] = [0, seed.time_to_harvest, seed_name, planted_day];
+
+        if (seed.stock > 0) {
+            seed.stock--;
+            document.getElementById(`${seed_name}-seed-stock`).textContent = seed.stock;
+            fields[field_key].field[plot] = [0, seed.time_to_harvest, seed, planted_day];
         }
     }
 
@@ -33,36 +64,30 @@ function plant(field_key, seed_name) {
 }
 
 function fertilizing(field_key) {
-    if (warehouse_products_fertilizer > 0 && !fields[field_key].info.fertilized) {
-        fields[field_key].info.fertilized = true;
+    let field   = fields[field_key];
+    let product = products['fertilizer'];
+    
+    if (product.stock > 0 && !field.info.fertilized) {
+        field.info.fertilized = true;
         document.getElementById('fertilizing').textContent = 'yes'; 
-        warehouse_products_fertilizer--;
-        document.getElementById('products-fertilizer-count').textContent = warehouse_products_fertilizer;
+        product.stock--;
+        document.getElementById('products-fertilizer-count').textContent = product.stock;
     }
 }
 
 function harvest(field_key) {
-    const harvests = {
-        'wheat': { count: 'warehouse_harvest_wheat', element_id: 'harvest-wheat-count' },
-        'lettuce': { count: 'warehouse_harvest_lettuce', element_id: 'harvest-lettuce-count' },
-        'corn': { count: 'warehouse_harvest_corn', element_id: 'harvest-corn-count' },
-        'tomato': { count: 'warehouse_harvest_tomato', element_id: 'harvest-tomato-count' },
-        'dragon fruit': { count: 'warehouse_harvest_dragon_fruit', element_id: 'harvest-dragon-fruit-count' }
-    };
+    let field = fields[field_key];
 
-    let fertilized = fields[field_key].info.fertilized;
     fields[field_key].field.forEach((plot, index) => {
         if (plot[0] == 2) {
-            let crop = plot[2];
-            if (crop in harvests) {
-                if (fertilized && (Math.random() < 0.4)) {
-                    window[harvests[crop].count] += 2;
-                } else {
-                    window[harvests[crop].count]++;
-                }
-                document.getElementById(harvests[crop].element_id).textContent = window[harvests[crop].count];
-                fields[field_key].field[index] = [0, 0, 'none', 0];
-            }
+            let crop_key = plot[2];
+            let crop     = harvest[plot[2]];
+
+            if (field.info.fertilized && (Math.random() < 0.4)) crop.stock += 2;
+            else crop.stock++;
+
+            document.getElementById(`harvest-${crop_key}-count`).textContent = crop.stock;
+            fields[field_key].field[index] = [0, 0, 'none', 0];
         }
     });
 
@@ -82,33 +107,4 @@ function growFields() {
             }
         });
     }
-}
-
-const image_paths = {
-    'wheat': 'resources/wheat.png',
-    'lettuce': 'resources/lettuce.png',
-    'corn': 'resources/corn.png',
-    'tomato': 'resources/tomato.png',
-    'dragon fruit': 'resources/dragon_fruit.png',
-    'none': 'resources/none.png',
-    '0': 'resources/grow_0.png',
-    '1': 'resources/grow_1.png',
-};
-
-function updateFieldView(field_key) {
-    const grid = document.getElementById('field');
-    grid.innerHTML = '';
-
-    fields[field_key].field.forEach(plot => {
-        let image;
-        if (plot[2] == 'none') {image = 'none'}
-        else if (plot[0] < 2) image = plot[0];
-        else image = plot[2];
-
-        const img = document.createElement('img');
-        img.src = image_paths[image];
-        img.alt = `Image ${image}`;
-        img.classList.add('grid-image');
-        grid.appendChild(img);
-    });
 }
