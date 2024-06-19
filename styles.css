@@ -133,3 +133,7 @@ body {
     align-items: center;
     font-weight: bold;
 }
+
+img {
+    height: 20px;
+}
