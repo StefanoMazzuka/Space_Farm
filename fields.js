@@ -5,7 +5,6 @@ fields_divs.forEach(field_div => {
         fields_divs.forEach(i => i.classList.remove('red-border'));
         field_div.classList.add('red-border');
         current_field = field_div.id;
-        console.log(current_field); // TODO Delete
     });
 });
 
@@ -24,26 +23,6 @@ function updateFieldView(field_key) {
         img.classList.add('grid-image');
         grid.appendChild(img);
     });
-}
-
-function initializeFields() {
-    const fields_config = {
-        'field-1': 20,
-        'field-2': 60,
-        'field-3': 40,
-        'field-4': 20
-    };
-
-    for (const [key, size] of Object.entries(fields_config)) {
-        fields[key] = {
-            info: {
-                fertilized: false
-            },
-            field: Array(size).fill([0, 0, 'none', 0])
-        };
-
-        updateFieldView(key);
-    }
 }
 
 function plant(field_key, seed_name) {
@@ -69,21 +48,26 @@ function fertilizing(field_key) {
     
     if (product.stock > 0 && !field.info.fertilized) {
         field.info.fertilized = true;
-        document.getElementById('fertilizing').textContent = 'yes'; 
         product.stock--;
-        document.getElementById('products-fertilizer-count').textContent = product.stock;
+        document.getElementById('fertilizer-stock').textContent = product.stock;
+        document.getElementById(field_key).classList.remove('unfetilized');
+        document.getElementById(field_key).classList.add('fertilized');
     }
 }
 
-function harvest(field_key) {
+function harvesting(field_key) {
     let field = fields[field_key];
-
+    console.log('harvesting')
     fields[field_key].field.forEach((plot, index) => {
         if (plot[0] == 2) {
             let crop_key = plot[2];
             let crop     = harvest[plot[2]];
 
-            if (field.info.fertilized && (Math.random() < 0.4)) crop.stock += 2;
+            if (field.info.fertilized && (Math.random() < 0.4)) {
+                crop.stock += 2;
+                document.getElementById(field_key).classList.remove('fertilized');
+                document.getElementById(field_key).classList.add('unfetilized');
+            }
             else crop.stock++;
 
             document.getElementById(`harvest-${crop_key}-count`).textContent = crop.stock;
@@ -92,7 +76,6 @@ function harvest(field_key) {
     });
 
     fields[field_key].info.fertilized = false;
-    document.getElementById('fertilizing').textContent = 'no';
 
     updateFieldView(field_key);
 }
@@ -107,4 +90,10 @@ function growFields() {
             }
         });
     }
+}
+
+function loadFields() {
+    Object.keys(fields).forEach(field => {
+        updateFieldView(field);
+    });
 }

@@ -1,357 +1,38 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/python_workspace/Space_Farm/index.html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navegación de Lista</title>
+    <title>Space Farm</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <audio id="sleep" src="resources/sleep.mp3" preload="auto"></audio>
-        <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
-        <audio id="sell" src="resources/sell.mp3" preload="auto"></audio>
-        <div class="gui-zone">
-            <div class="left-gui-zone">
-                <div class="gui-info">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>day</td>
-                                <td id="day"></td>
-                            </tr>
-                            <tr>
-                                <td>clock</td>
-                                <td id="clock">00:00H</td>
-                            </tr>
-                            <tr>
-                                <td>coins</td>
-                                <td id="total-coins"></td>
-                                <td><img src="resources/coin.png"></td>
-                            </tr>
-                            <tr>
-                                <td>fertilizing</td>
-                                <td id="fertilizing">no</td>
-                            </tr>
-                            <tr>
-                                <td>field</td>
-                                <td id="field-id">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="field-gui" id="field"></div>
-            </div>
-            <div class="right-gui-zone">
-                <p class="p-title">fields</p>
-                <div class="map">
-                    <img src="resources/map.png">
-                </div>
-            </div>
-        </div>     
-
-        <div class="play-zone">
-            <div class="left-play-zone">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>field</td>
-                            <td>
-                                <button id="prev-field-btn">&lt;</button>
-                                <span id="current-field-index">1</span>
-                                <button id="next-field-btn">&gt;</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>seed</td>
-                            <td>
-                                <button id="prev-seed-btn">&lt;</button>
-                                <span id="current-seed-index">wheat</span>
-                                <button id="next-seed-btn">&gt;</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    <button id="sleep-btn">sleep</button>
-                    <button id="plant-btn">plant</button>
-                    <button id="harvesting-btn">harvesting</button>
-                    <button id="fertilizing-btn">fertilizing</button>
-                </p>
-            </div>
-            <div class="right-play-zone">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>market demand</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="top">
-                                <table class="market-demand-table">
-                                    <tbody>
-                                        <tr>
-                                            <td>wheat</td>
-                                            <td><img src="resources/wheat.png"></td>
-                                            <td id="wheat-market-demand">0</td>
-                                            <td><img src="resources/coin.png"></td>
-                                            <td id="market-demand-wheat-img"><img src="resources/blank.png"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>lettuce</td>
-                                            <td><img src="resources/lettuce.png"></td>
-                                            <td id="lettuce-market-demand">0</td>
-                                            <td><img src="resources/coin.png"></td>
-                                            <td id="market-demand-lettuce-img"><img src="resources/blank.png"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>corn</td>
-                                            <td><img src="resources/corn.png"></td>
-                                            <td id="corn-market-demand">0</td>
-                                            <td><img src="resources/coin.png"></td>
-                                            <td id="market-demand-corn-img"><img src="resources/blank.png"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>tomato</td>
-                                            <td><img src="resources/tomato.png"></td>
-                                            <td id="tomato-market-demand">0</td>
-                                            <td><img src="resources/coin.png"></td>
-                                            <td id="market-demand-tomato-img"><img src="resources/blank.png"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>dragon fruit</td>
-                                            <td><img src="resources/dragon_fruit.png"></td>
-                                            <td id="dragon-fruit-market-demand">0</td>
-                                            <td><img src="resources/coin.png"></td>
-                                            <td id="market-demand-dragon-fruit-img"><img src="resources/blank.png"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="grid-container">
+        <div class="grid-item item1 field unfertilized" id="field-1">Field 1</div>
+        <div class="grid-item item2 field unfertilized" id="field-2">Field 2</div>
+        <div class="grid-item item3 field unfertilized" id="field-3">Field 3</div>
+        <div class="grid-item item4 field unfertilized" id="field-4">Field 4</div>
+        <div class="grid-item item5 warehouse" onclick="navigateTo('warehouse.html')">Warehouse</div>
+        <div class="grid-item item6 store" onclick="navigateTo('store.html')">Store</div>
+        <div class="grid-item item7">Town</div>
+        <div class="grid-item item8">Town</div>
+        <div class="grid-item item9">Town</div>
+        <div class="grid-item item10">
+            <div class="control-panel" id="plant-panel"></div>
+            <div class="control-panel" id="products-panel"></div>
+            <div class="control-panel" id="harvest-panel">
+                <img src="resources/harvest.png" id="harvest">
             </div>
         </div>
-
-        <div class="warehouse">
-            <p class="p-title">warehouse</p>
-            <table class="warehouse-table">
-                <thead>
-                    <tr>
-                        <th>seeds</th>
-                        <th>products</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="top">
-                            <table class="seeds-table">
-                                <tbody>
-                                    <tr>
-                                        <td>wheat</td>
-                                        <td id="seeds-wheat-count">0</td>
-                                        <td><img src="resources/wheat_seed.png"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>lettuce</td>
-                                        <td id="seeds-lettuce-count">0</td>
-                                        <td><img src="resources/lettuce_seed.png"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>corn</td>
-                                        <td id="seeds-corn-count">0</td>
-                                        <td><img src="resources/corn_seed.png"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>tomato</td>
-                                        <td id="seeds-tomato-count">0</td>
-                                        <td><img src="resources/tomato_seed.png"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>dragon fruit</td>
-                                        <td id="seeds-dragon-fruit-count">0</td>
-                                        <td><img src="resources/dragon_fruit_seed.png"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="top">
-                            <table class="products-table">
-                                <tbody>
-                                    <tr>
-                                        <td>fertilizer</td>
-                                        <td id="products-fertilizer-count">0</td>
-                                        <td><img src="resources/fertilizer.png"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="warehouse-table">
-                <thead>
-                    <tr>
-                        <th>harvest</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="top">
-                            <table class="harvest-table">
-                                <tbody>
-                                    <tr>
-                                        <td>wheat</td>
-                                        <td id="harvest-wheat-count">0</td>
-                                        <td><img src="resources/wheat.png"></td>
-                                        <td><button id="sell-wheat-btn">sell</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>lettuce</td>
-                                        <td id="harvest-lettuce-count">0</td>
-                                        <td><img src="resources/lettuce.png"></td>
-                                        <td><button id="sell-lettuce-btn">sell</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>corn</td>
-                                        <td id="harvest-corn-count">0</td>
-                                        <td><img src="resources/corn.png"></td>
-                                        <td><button id="sell-corn-btn">sell</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>tomato</td>
-                                        <td id="harvest-tomato-count">0</td>
-                                        <td><img src="resources/tomato.png"></td>
-                                        <td><button id="sell-tomato-btn">sell</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>dragon fruit</td>
-                                        <td id="harvest-dragon-fruit-count">0</td>
-                                        <td><img src="resources/dragon_fruit.png"></td>
-                                        <td><button id="sell-dragon-fruit-btn">sell</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="store">
-            <p class="p-title">store</p>
-            <table class="store-table">
-                <thead>
-                    <tr>
-                        <th>seeds</th>
-                        <th>products</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="top">
-                            <table class="seeds-table">
-                                <tbody>
-                                    <tr>
-                                        <td>10 x wheat</td>
-                                        <td><img src="resources/wheat_seed.png"></td>
-                                        <td>100</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-wheat-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 x lettuce</td>
-                                        <td><img src="resources/lettuce_seed.png"></td>
-                                        <td>200</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-lettuce-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 x corn</td>
-                                        <td><img src="resources/corn_seed.png"></td>
-                                        <td>400</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-corn-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 x tomato</td>
-                                        <td><img src="resources/tomato_seed.png"></td>
-                                        <td>800</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-tomato-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 x dragon fruit</td>
-                                        <td><img src="resources/dragon_fruit_seed.png"></td>
-                                        <td>1600</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-dragon-fruit-btn">buy</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td class="top">
-                            <table class="products-table">
-                                <tbody>
-                                    <tr>
-                                        <td>fertilizer</td>
-                                        <td><img src="resources/fertilizer.png"></td>
-                                        <td>50</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-fertilizer-btn">buy</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="store-table">
-                <thead>
-                    <tr>
-                        <th>fields</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="top">
-                            <table class="fields-table">
-                                <tbody>
-                                    <tr>
-                                        <td>small 10x2</td>
-                                        <td><img src="resources/small_field.png"></td>
-                                        <td>100</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-small-field-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>medium 10x3</td>
-                                        <td><img src="resources/medium_field.png"></td>
-                                        <td>1000</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-medium-field-btn">buy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>large 10x5</td>
-                                        <td><img src="resources/large_field.png"></td>
-                                        <td>5000</td>
-                                        <td><img src="resources/coin.png"></td>
-                                        <td><button id="buy-large-field-btn">buy</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div><button id="reset-btn">reset all</button></div>
     </div>
     <script src="globals.js"></script>
-    <script src="calendar.js"></script>
-    <script src="sounds.js"></script>
     <script src="fields.js"></script>
-    <script src="market.js"></script>
-    <script src="scripts.js"></script>
-</body></html>
+    <script src="controlPanel.js"></script>
+    <script src="index.js"></script>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

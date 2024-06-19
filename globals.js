@@ -16,7 +16,6 @@ var image_paths = {
 };
 
 var coins = 0;
-var fields = {};
 
 // play zone
 var clock;
@@ -26,6 +25,33 @@ var minute     = 0;
 var day;
 var current_field = 'field-1';
 var current_seed;
+
+var fields = {
+  'field-1': { 
+      info: {
+          fertilized: false
+      },
+      field: Array(20).fill([0, 0, 'none', 0])
+  },
+  'field-2': { 
+      info: {
+          fertilized: false
+      },
+      field: Array(60).fill([0, 0, 'none', 0])
+  },
+  'field-3': { 
+      info: {
+          fertilized: false
+      },
+      field: Array(40).fill([0, 0, 'none', 0])
+  },
+  'field-4': { 
+      info: {
+          fertilized: false
+      },
+      field: Array(20).fill([0, 0, 'none', 0])
+  }
+}
 
 var seeds = {
   'wheat': { 
@@ -96,6 +122,6 @@ var harvest = {
 var products = {
   'fertilizer': { name: 'fertilizer',
     buy_price: 50,
-    stock: 0
+    stock: 2
   }
 }
