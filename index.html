@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <audio id="sleep" src="resources/sleep.mp3" preload="auto"></audio>
+    <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
+    <audio id="sell" src="resources/sell.mp3" preload="auto"></audio>
     <div class="grid-container">
         <div class="grid-item item1 field unfertilized" id="field-1">Field 1</div>
         <div class="grid-item item2 field unfertilized" id="field-2">Field 2</div>
@@ -23,9 +26,31 @@
             <div class="control-panel" id="harvest-panel">
                 <img src="resources/harvest.png" id="harvest">
             </div>
+            <div class="control-panel" id="harvest-panel">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="info" id="clock"></td>
+                            <td>H</td>
+                        </tr>
+                        <tr>
+                            <td>day</td>
+                            <td class="info" id="day"></td>
+                            <td><img src="resources/sun.png"></td>
+                        </tr>
+                        <tr>
+                            <td>coins</td>
+                            <td class="info" id="coins"></td>
+                            <td><img src="resources/coin.png"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="globals.js"></script>
+    <script src="sounds.js"></script>
     <script src="fields.js"></script>
     <script src="controlPanel.js"></script>
     <script src="index.js"></script>

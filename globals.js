@@ -10,19 +10,18 @@ var image_paths = {
   'tomato-seed': 'resources/tomato-seed.png',
   'dragonfruit-seed': 'resources/dragonfruit-seed.png',
   'fertilizer': 'resources/fertilizer.png',
+  'bed': 'resources/bed.png',
   'none': 'resources/none.png',
   '0': 'resources/grow-0.png',
   '1': 'resources/grow-1.png',
 };
 
-var coins = 0;
-
-// play zone
-var clock;
+var coins      = 0;
+var day        = 1;
 var time_scale = 500;
 var hour       = 0;
 var minute     = 0;
-var day;
+var clock;
 var current_field = 'field-1';
 var current_seed;
 
@@ -120,8 +119,14 @@ var harvest = {
 }
 
 var products = {
-  'fertilizer': { name: 'fertilizer',
+  'fertilizer': { 
+    name: 'fertilizer',
     buy_price: 50,
+    stock: 2
+  },
+  'bed': { 
+    name: 'bed',
+    buy_price: 100,
     stock: 2
   }
 }

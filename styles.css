@@ -40,6 +40,14 @@ body {
     border: 1px solid black;
 }
 
+[id$="-stock"] {
+   text-align: center;
+}
+
+.info {
+    text-align: right;
+}
+
 .grid-image {
     margin: 2px;
 }
@@ -109,7 +117,7 @@ body {
 }
 
 .red-border {
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
 .control-panel {

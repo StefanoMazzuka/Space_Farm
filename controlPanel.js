@@ -4,16 +4,21 @@ function addClickEventPlant(seed) {
     });
 }
 
-function addClickEventFertilize(seed) {
-    seed.addEventListener('click', () => {
+function addClickEventFertilize(product) {
+    product.addEventListener('click', () => {
         fertilizing(current_field);
     });
 }
 
-function addClickEventSleep(seed) {
-    seed.addEventListener('click', () => {
-        playSound('sleep');
-        nextDay();
+function addClickEventSleep(product) {
+    product.addEventListener('click', () => {
+        const product = products['bed'];
+        if (product.stock > 0) {
+            playSound('sleep');
+            nextDay();
+            product.stock--;
+            document.getElementById('bed-stock').textContent = product.stock;
+        }
     });
 }
 
@@ -62,9 +67,47 @@ function loadItems(panel_id, items, image_posfix) {
     grid.appendChild(table);
 }
 
+function nextDay() {
+    clearInterval(clock);
+    day++;
+    hour = 6;
+    minute = 0;
+    document.getElementById('day').textContent = day;
+    growFields();
+    startClock();
+    updateFieldView(current_field);
+    //updateMarket();
+}
+
+function advanceTime() {
+    minute++;
+    if (minute >= 60) {
+        minute = 0;
+        hour++;
+        if (hour >= 24) {
+            hour = 0;
+            let count = 0;
+            nextDay();
+            playSound('changing-day-sound');
+        }
+    }
+    document.getElementById('clock').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+}
+
+function startClock() {
+    clock = setInterval(advanceTime, time_scale);
+}
+
+function loadInfo() {
+    document.getElementById('day').textContent   = day.toString();
+    document.getElementById('clock').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    document.getElementById('coins').textContent = coins.toString();
+}
+
 function loadControlPanel() {
     loadItems('plant-panel', seeds, '-seed');
     loadItems('products-panel', products, '');
+    loadInfo();
 }
 
 document.getElementById('harvest').addEventListener('click', () => {
