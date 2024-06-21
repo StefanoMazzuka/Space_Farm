@@ -1,22 +1,32 @@
 var image_paths = {
+  'coin': 'resources/coin.png',
   'wheat': 'resources/wheat.png',
   'lettuce': 'resources/lettuce.png',
   'corn': 'resources/corn.png',
   'tomato': 'resources/tomato.png',
-  'dragonfruit': 'resources/dragon-fruit.png',
+  'dragonfruit': 'resources/dragonfruit.png',
+
   'wheat-seed': 'resources/wheat-seed.png',
   'lettuce-seed': 'resources/lettuce-seed.png',
   'corn-seed': 'resources/corn-seed.png',
   'tomato-seed': 'resources/tomato-seed.png',
   'dragonfruit-seed': 'resources/dragonfruit-seed.png',
+
+  'wheat-seeds-box': 'resources/wheat-seeds-box.png',
+  'lettuce-seeds-box': 'resources/lettuce-seeds-box.png',
+  'corn-seeds-box': 'resources/corn-seeds-box.png',
+  'tomato-seeds-box': 'resources/tomato-seeds-box.png',
+  'dragonfruit-seeds-box': 'resources/dragonfruit-seeds-box.png',
+
   'fertilizer': 'resources/fertilizer.png',
   'bed': 'resources/bed.png',
+
   'none': 'resources/none.png',
   '0': 'resources/grow-0.png',
   '1': 'resources/grow-1.png',
 };
 
-var coins      = 0;
+var coins      = 100;
 var day        = 1;
 var time_scale = 500;
 var hour       = 0;
@@ -55,78 +65,119 @@ var fields = {
 var seeds = {
   'wheat': { 
     name: 'wheat',
-    buy_price: 100,
-    stock: 5,
     time_to_harvest: 3
   },
   'lettuce': {
     name: 'lettuce',
-    buy_price: 200,
-    stock: 0,
     time_to_harvest: 3
   },
   'corn': {
     name: 'corn',
-    buy_price: 400,
-    stock: 0,
     time_to_harvest: 6
   },
   'tomato': {
     name: 'tomato',
-    buy_price: 800,
-    stock: 0,
     time_to_harvest: 6
   },
   'dragonfruit': {
     name: 'dragon fruit',
-    buy_price: 1600,
-    stock: 0,
     time_to_harvest: 9
   }
 }
 
-var harvest = {
-  'wheat': { 
-    name: 'wheat',
-    buy_price: 100,
-    sell_price: 12,
-    stock: 0
+var store = {
+  seeds: {
+    'wheat-seeds-box': { 
+      name: '10 Wheat seeds',
+      buy_price: 100
+    },
+    'lettuce-seeds-box': {
+      name: '10 lettuce seeds',
+      buy_price: 200
+    },
+    'corn-seeds-box': {
+      name: '10 corn seeds',
+      buy_price: 400
+    },
+    'tomato-seeds-box': {
+      name: '10 tomato seeds',
+      buy_price: 800
+    },
+    'dragonfruit-seeds-box': {
+      name: '10 dragon fruit seeds',
+      buy_price: 1600,
+    }
   },
-  'lettuce': {
-    name: 'lettuce',
-    buy_price: 200,
-    sell_price: 24,
-    stock: 0
-  },
-  'corn': {
-    name: 'corn',
-    buy_price: 400,
-    sell_price: 48,
-    stock: 0
-  },
-  'tomato': {
-    name: 'tomato',
-    buy_price: 800,
-    sell_price: 96,
-    stock: 0
-  },
-  'dragonfruit': {
-    name: 'dragon fruit',
-    buy_price: 1600,
-    sell_price: 192,
-    stock: 0
+  products: {
+    'fertilizer': { 
+      name: '1 Fertilizer',
+      buy_price: 50
+    },
+    'bed': { 
+      name: '1 Bed',
+      buy_price: 100
+    }
   }
 }
 
-var products = {
-  'fertilizer': { 
-    name: 'fertilizer',
-    buy_price: 50,
-    stock: 2
+var warehouse = {
+  seeds: {
+    'wheat-seeds-box': { 
+      name: '10 Wheat seeds',
+      stock: 0
+    },
+    'lettuce-seeds-box': {
+      name: '10 lettuce seeds',
+      stock: 0
+    },
+    'corn-seeds-box': {
+      name: '10 corn seeds',
+      stock: 0
+    },
+    'tomato-seeds-box': {
+      name: '10 tomato seeds',
+      stock: 0
+    },
+    'dragonfruit-seeds-box': {
+      name: '10 dragon fruit seeds',
+      stock: 0
+    }
   },
-  'bed': { 
-    name: 'bed',
-    buy_price: 100,
-    stock: 2
+  products: {
+    'fertilizer': { 
+      name: '1 Fertilizer',
+      stock: 0
+    },
+    'bed': { 
+      name: '1 Bed',
+      
+    }
+  },
+  harvest: {
+    'wheat': { 
+      name: 'wheat',
+      stock: 0,
+      sell_price: 12
+    },
+    'lettuce': {
+      name: 'lettuce',
+      stock: 0,
+      sell_price: 24
+    },
+    'corn': {
+      name: 'corn',
+      stock: 0,
+      sell_price: 48
+    },
+    'tomato': {
+      name: 'tomato',
+      stock: 0,
+      sell_price: 96
+    },
+    'dragonfruit': {
+      name: 'dragon fruit',
+      sell_price: 192,
+      stock: 0
+    }
   }
 }

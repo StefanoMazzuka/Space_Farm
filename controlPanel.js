@@ -38,7 +38,7 @@ function addClickEvent(img) {
     }
 }
 
-function loadItems(panel_id, items, image_posfix) {
+function loadControlPanelItems(panel_id, items, image_posfix) {
     const grid = document.getElementById(panel_id);
     grid.innerHTML = '';
 
@@ -79,25 +79,6 @@ function nextDay() {
     //updateMarket();
 }
 
-function advanceTime() {
-    minute++;
-    if (minute >= 60) {
-        minute = 0;
-        hour++;
-        if (hour >= 24) {
-            hour = 0;
-            let count = 0;
-            nextDay();
-            playSound('changing-day-sound');
-        }
-    }
-    document.getElementById('clock').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-}
-
-function startClock() {
-    clock = setInterval(advanceTime, time_scale);
-}
-
 function loadInfo() {
     document.getElementById('day').textContent   = day.toString();
     document.getElementById('clock').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
@@ -105,8 +86,8 @@ function loadInfo() {
 }
 
 function loadControlPanel() {
-    loadItems('plant-panel', seeds, '-seed');
-    loadItems('products-panel', products, '');
+    loadControlPanelItems('plant-panel', seeds, '-seed');
+    loadControlPanelItems('products-panel', products, '');
     loadInfo();
 }
 

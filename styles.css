@@ -1,17 +1,16 @@
 body {
     font-family: monospace;
-    font-size: 11px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     background-color: lightgreen;
     border: 1px solid black;
 }
@@ -46,10 +45,6 @@ body {
 
 .info {
     text-align: right;
-}
-
-.grid-image {
-    margin: 2px;
 }
 
 .unfertilized {
@@ -110,21 +105,50 @@ body {
     background-color: grey;
 }
 
-.item10 {
-    grid-column: 1 / 4;
-    grid-row: 5 / 6;
-    background-color: lightblue;
-}
-
 .red-border {
     border: 1px solid red;
 }
 
 .control-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.cp-item1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     border: 1px solid black;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 10px;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.cp-item2 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.cp-item3 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.cp-item4 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
 }
 
 .img-item {
@@ -136,4 +160,50 @@ body {
 
 img {
     height: 20px;
+}
+
+.store-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.s-item1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.s-item2 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.s-item3 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.price {
+    text-align: right;
+}
+
+.buy {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+td {
+    vertical-align: middle;
 }
