@@ -19,7 +19,7 @@ function updateFieldView(field_key) {
         else image = plot[2];
 
         const img = document.createElement('img');
-        console.log("HERE"+plot);
+
         img.src = image_paths[image];
         img.classList.add('grid-image');
         grid.appendChild(img);
@@ -29,13 +29,14 @@ function updateFieldView(field_key) {
 function plant(field_key, seed_name) {
     const seed = seeds[seed_name];
     const plot = fields[field_key].field.findIndex(plot => plot[0] === 0 && plot[1] === 0 && plot[2] === 'none' && plot[3] === 0);
+    
     if (plot !== -1) {
         const planted_day = day;
-
-        if (seed.stock > 0) {
-            seed.stock--;
-            document.getElementById(`${seed_name}-seed-stock`).textContent = seed.stock;
-            fields[field_key].field[plot] = [0, seed.time_to_harvest, seed.name, planted_day];
+        const warehouse_seed = warehouse['seeds'][`${seed_name}s-box`];
+        if (warehouse_seed.stock > 0) {
+            warehouse_seed.stock--;
+            document.getElementById(`${seed_name}-stock`).textContent = warehouse_seed.stock;
+            fields[field_key].field[plot] = [0, seed.time_to_harvest, seed_name.replace('-seed', ''), planted_day];
         }
     }
 
@@ -44,7 +45,7 @@ function plant(field_key, seed_name) {
 
 function fertilizing(field_key) {
     const field   = fields[field_key];
-    const product = products['fertilizer'];
+    const product = warehouse['products']['fertilizer'];
     
     if (product.stock > 0 && !field.info.fertilized) {
         field.info.fertilized = true;
@@ -57,11 +58,11 @@ function fertilizing(field_key) {
 
 function harvesting(field_key) {
     const field = fields[field_key];
-    console.log('harvesting')
+
     fields[field_key].field.forEach((plot, index) => {
         if (plot[0] == 2) {
             const crop_key = plot[2];
-            const crop     = harvest[plot[2]];
+            const crop     = warehouse['harvest'][plot[2]];
 
             if (field.info.fertilized && (Math.random() < 0.4)) {
                 crop.stock += 2;
@@ -70,7 +71,6 @@ function harvesting(field_key) {
             }
             else crop.stock++;
 
-            console.log(harvest);
             fields[field_key].field[index] = [0, 0, 'none', 0];
         }
     });
@@ -81,16 +81,19 @@ function harvesting(field_key) {
 }
 
 function growFields() {
-    for (const id in fields) {
-        fields[id].field.forEach(plot => {
+    for (var field_key in fields) {
+          var field = fields[field_key].field;
+          for (var i = 0; i < field.length; i++) {
+            var plot = field[i];
             if (plot[2] != 'none' && plot[0] < 2) {
                 const elapsed_days = day - plot[3];
                 const new_growing_state = Math.floor(elapsed_days / (plot[1] / 3));
                 plot[0] = new_growing_state;
             }
-        });
+        }
     }
 }
+
 
 function loadFields() {
     Object.keys(fields).forEach(field => {

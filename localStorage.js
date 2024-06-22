@@ -1,42 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // LocalStorage
-    function saveToLocalStorage() {
-        localStorage.setItem('fields', JSON.stringify(fields));
-        localStorage.setItem('seeds', JSON.stringify(seeds));
-        localStorage.setItem('harvest', JSON.stringify(harvest));
-        localStorage.setItem('products', JSON.stringify(products));
-        localStorage.setItem('hour', JSON.stringify(hour));
-        localStorage.setItem('minute', JSON.stringify(minute));
-        localStorage.setItem('coins', JSON.stringify(coins));
-        localStorage.setItem('day', JSON.stringify(day));
-    }
+function saveToLocalStorage() {
+    localStorage.setItem('coins', JSON.stringify(coins));
+    localStorage.setItem('day', JSON.stringify(day));
+    localStorage.setItem('hour', JSON.stringify(hour));
+    localStorage.setItem('minute', JSON.stringify(minute));
+    localStorage.setItem('fields', JSON.stringify(fields));
+    localStorage.setItem('seeds', JSON.stringify(seeds));
+    localStorage.setItem('warehouse', JSON.stringify(warehouse));
+}
 
-    function loadFromLocalStorage() {
-        fields_loaded = localStorage.getItem('fields');
-        fields = fields_loaded ? JSON.parse(fields_loaded): fields;
+function loadFromLocalStorage() {
+    coins_loaded  = parseInt(localStorage.getItem('coins'));
+    day_loaded    = parseInt(localStorage.getItem('day'));
+    hour_loaded   = parseInt(localStorage.getItem('hour'));
+    minute_loaded = parseInt(localStorage.getItem('minute'));
+    
+    coins  = !isNaN(coins_loaded) ? coins_loaded: coins;
+    day    = !isNaN(day_loaded) ? day_loaded: day;
+    hour   = !isNaN(hour_loaded) ? hour_loaded: hour;
+    minute = !isNaN(minute_loaded) ? minute_loaded: minute;
 
-        seeds_loaded = localStorage.getItem('seeds');
-        seeds = seeds_loaded ? JSON.parse(seeds_loaded): seeds;
+    fields_loaded = localStorage.getItem('fields');
+    fields = fields_loaded ? JSON.parse(fields_loaded): fields;
 
-        harvest_loaded = localStorage.getItem('harvest');
-        harvest = harvest_loaded ? JSON.parse(harvest_loaded): harvest;
+    seeds_loaded = localStorage.getItem('seeds');
+    seeds = seeds_loaded ? JSON.parse(seeds_loaded): seeds;
 
-        products_loaded = localStorage.getItem('products');
-        products = products_loaded ? JSON.parse(products_loaded): products;
-
-        hour_loaded   = parseInt(localStorage.getItem('hour'));
-        minute_loaded = parseInt(localStorage.getItem('minute'));
-        coins_loaded  = parseInt(localStorage.getItem('coins'));
-        day_loaded    = parseInt(localStorage.getItem('day'));
-
-        hour   = !isNaN(hour_loaded) ? hour_loaded: hour;
-        minute = !isNaN(minute_loaded) ? minute_loaded: minute;
-        coins  = !isNaN(coins_loaded) ? coins_loaded: coins;
-        day    = !isNaN(day_loaded) ? day_loaded: day;;
-
-        startClock();
-    }
-
-    window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
-    //window.addEventListener('beforeunload', saveToLocalStorage);
-});
+    warehouse_loaded = localStorage.getItem('warehouse');
+    warehouse = warehouse_loaded ? JSON.parse(warehouse_loaded): warehouse;
+    
+    startClock();
+}

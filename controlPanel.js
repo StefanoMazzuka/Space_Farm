@@ -12,7 +12,7 @@ function addClickEventFertilize(product) {
 
 function addClickEventSleep(product) {
     product.addEventListener('click', () => {
-        const product = products['bed'];
+        const product = warehouse['products']['bed'];
         if (product.stock > 0) {
             playSound('sleep');
             nextDay();
@@ -22,10 +22,9 @@ function addClickEventSleep(product) {
     });
 }
 
-function addClickEvent(img) {
-    console.log(img.id)
-    if (img.id in seeds) addClickEventPlant(img);
-    else if (img.id in products) {
+function addClickEvent(img, tag) {
+    if (tag == 'seeds') addClickEventPlant(img);
+    else if (tag == 'products') {
         switch (img.id) {
             case "fertilizer":
                 addClickEventFertilize(img);
@@ -38,8 +37,9 @@ function addClickEvent(img) {
     }
 }
 
-function loadControlPanelItems(panel_id, items, image_posfix) {
-    const grid = document.getElementById(panel_id);
+function loadControlPanelItems(panel_id, tag, is_seed) {
+    const items = warehouse[tag];
+    const grid  = document.getElementById(panel_id);
     grid.innerHTML = '';
 
     const table      = document.createElement('table');
@@ -48,35 +48,24 @@ function loadControlPanelItems(panel_id, items, image_posfix) {
 
     Object.keys(items).forEach(item => {
         const img_cell = document.createElement('td');
-        const img = document.createElement('img');
-        img.src = image_paths[`${item}${image_posfix}`];
-        img.id = `${item}`;
-        img.className = 'img-item';
+        const img      = document.createElement('img');
+        const img_id   = is_seed ? item.replace('s-box', ''): item;
+        img.src        = image_paths[img_id];
+        img.id         = img_id;
+        img.className  = 'img-item';
         img_cell.appendChild(img);
         first_row.appendChild(img_cell);
-        addClickEvent(img);
+        addClickEvent(img, tag);
 
-        const stock_cell = document.createElement('td');
+        const stock_cell       = document.createElement('td');
         stock_cell.textContent = items[item].stock;
-        stock_cell.id = `${item}${image_posfix}-stock`;
+        stock_cell.id          = `${img_id}-stock`;
         second_row.appendChild(stock_cell);
     });
 
     table.appendChild(first_row);
     table.appendChild(second_row);
     grid.appendChild(table);
-}
-
-function nextDay() {
-    clearInterval(clock);
-    day++;
-    hour = 6;
-    minute = 0;
-    document.getElementById('day').textContent = day;
-    growFields();
-    startClock();
-    updateFieldView(current_field);
-    //updateMarket();
 }
 
 function loadInfo() {
@@ -86,8 +75,8 @@ function loadInfo() {
 }
 
 function loadControlPanel() {
-    loadControlPanelItems('plant-panel', seeds, '-seed');
-    loadControlPanelItems('products-panel', products, '');
+    loadControlPanelItems('plant-panel', 'seeds', true);
+    loadControlPanelItems('products-panel', 'products', false);
     loadInfo();
 }
 

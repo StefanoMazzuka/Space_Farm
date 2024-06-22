@@ -1,5 +1,11 @@
 var image_paths = {
   'coin': 'resources/coin.png',
+  'sell': 'resources/sell.png',
+
+  'blank': 'resources/blank.png',
+  'up': 'resources/up.png',
+  'down': 'resources/down.png',
+
   'wheat': 'resources/wheat.png',
   'lettuce': 'resources/lettuce.png',
   'corn': 'resources/corn.png',
@@ -21,12 +27,16 @@ var image_paths = {
   'fertilizer': 'resources/fertilizer.png',
   'bed': 'resources/bed.png',
 
+  'small-field': 'resources/small-field.png',
+  'medium-field': 'resources/medium-field.png',
+  'large-field': 'resources/large-field.png',
+
   'none': 'resources/none.png',
   '0': 'resources/grow-0.png',
   '1': 'resources/grow-1.png',
 };
 
-var coins      = 100;
+var coins      = 0;
 var day        = 1;
 var time_scale = 500;
 var hour       = 0;
@@ -34,6 +44,7 @@ var minute     = 0;
 var clock;
 var current_field = 'field-1';
 var current_seed;
+var unloked_fields = [];
 
 var fields = {
   'field-1': { 
@@ -63,24 +74,24 @@ var fields = {
 }
 
 var seeds = {
-  'wheat': { 
-    name: 'wheat',
+  'wheat-seed': { 
+    name: 'wheat seed',
     time_to_harvest: 3
   },
-  'lettuce': {
-    name: 'lettuce',
+  'lettuce-seed': {
+    name: 'lettuce seed',
     time_to_harvest: 3
   },
-  'corn': {
-    name: 'corn',
+  'corn-seed': {
+    name: 'corn seed',
     time_to_harvest: 6
   },
-  'tomato': {
-    name: 'tomato',
+  'tomato-seed': {
+    name: 'tomato seed',
     time_to_harvest: 6
   },
-  'dragonfruit': {
-    name: 'dragon fruit',
+  'dragonfruit-seed': {
+    name: 'dragon fruit seed',
     time_to_harvest: 9
   }
 }
@@ -117,6 +128,20 @@ var store = {
       name: '1 Bed',
       buy_price: 100
     }
+  },
+  fields: {
+    'small-field': { 
+      name: 'Small field',
+      buy_price: 2500
+    },
+    'medium-field': { 
+      name: 'Medium field',
+      buy_price: 5000
+    },
+    'large-field': { 
+      name: 'Large field',
+      buy_price: 10000
+    }
   }
 }
 
@@ -124,7 +149,7 @@ var warehouse = {
   seeds: {
     'wheat-seeds-box': { 
       name: '10 Wheat seeds',
-      stock: 0
+      stock: 10
     },
     'lettuce-seeds-box': {
       name: '10 lettuce seeds',
@@ -146,11 +171,11 @@ var warehouse = {
   products: {
     'fertilizer': { 
       name: '1 Fertilizer',
-      stock: 0
+      stock: 1
     },
     'bed': { 
       name: '1 Bed',
-      
+      stock: 2
     }
   },
   harvest: {
@@ -176,8 +201,8 @@ var warehouse = {
     },
     'dragonfruit': {
       name: 'dragon fruit',
-      sell_price: 192,
-      stock: 0
+      stock: 0,
+      sell_price: 192
     }
   }
 }

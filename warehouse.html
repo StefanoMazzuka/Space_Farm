@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warehouse</title>
-    <link rel="stylesheet" href="styles1.css">
+    <title>warehouse</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="content">
-        <h1>Warehouse</h1>
-        <button onclick="navigateBack()">exit</button>
+    <audio id="sleep" src="resources/sleep.mp3" preload="auto"></audio>
+    <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
+    <audio id="sell" src="resources/sell.mp3" preload="auto"></audio>
+    <h1>Warehouse</h1>
+    <div id="clock"></div>
+    <div id="coins"></div>
+    <div class="warehouse-content">
+        <div class="grid-item w-item1" id="warehouse-market-panel"></div>
+        <div class="grid-item w-item2" id="warehouse-harvest-panel"></div>
+        <div class="grid-item w-item3" id="warehouse-harvest-panel">
+            <img src="resources/exit.png" onclick="navigateBack()">
+        </div>
     </div>
-    <div class="container" id="plantContainer">
-        <div class="plant-item">0</div>
-        <div class="plant-item">0</div>
-        <div class="plant-item">0</div>
-        <div class="plant-item">0</div>
-        <div class="plant-item">0</div>
-    </div>
-    <button onclick="addPlant()">Add Plant</button>
+    <script src="localStorage.js"></script>
+    <script src="globals.js"></script>
+    <script src="time.js"></script>
+    <script src="sounds.js"></script>
+    <script src="fields.js"></script>
+    <script src="warehouse.js"></script>
     <script>
         function navigateBack() {
             window.history.back();
-        }
-    </script>
-    <script>
-        function addPlant() {
-            const container = document.getElementById('plantContainer');
-            const newPlant = document.createElement('div');
-            newPlant.className = 'plant-item';
-            newPlant.textContent = '0';
-            container.appendChild(newPlant);
         }
     </script>
 </body>

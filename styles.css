@@ -165,7 +165,7 @@ img {
 .store-content {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .s-item1 {
@@ -195,15 +195,61 @@ img {
     margin: 1%;
 }
 
-.price {
-    text-align: right;
+.s-item4 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
 }
 
 .buy {
     cursor: pointer;
-    border: 1px solid black;
 }
 
 td {
     vertical-align: middle;
+}
+
+.warehouse-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.w-item1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.w-item2 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.w-item3 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.w-item4 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
 }
