@@ -11,15 +11,15 @@ function saveToLocalStorage() {
 }
 
 function loadFromLocalStorage() {
-    coins_loaded          = parseInt(localStorage.getItem('coins'));
-    day_loaded            = parseInt(localStorage.getItem('day'));
-    hour_loaded           = parseInt(localStorage.getItem('hour'));
-    minute_loaded         = parseInt(localStorage.getItem('minute'));
+    coins_loaded  = parseInt(localStorage.getItem('coins'));
+    day_loaded    = parseInt(localStorage.getItem('day'));
+    hour_loaded   = parseInt(localStorage.getItem('hour'));
+    minute_loaded = parseInt(localStorage.getItem('minute'));
 
-    coins          = !isNaN(coins_loaded) ? coins_loaded: coins;
-    day            = !isNaN(day_loaded) ? day_loaded: day;
-    hour           = !isNaN(hour_loaded) ? hour_loaded: hour;
-    minute         = !isNaN(minute_loaded) ? minute_loaded: minute;
+    coins  = !isNaN(coins_loaded) ? coins_loaded: coins;
+    day    = !isNaN(day_loaded) ? day_loaded: day;
+    hour   = !isNaN(hour_loaded) ? hour_loaded: hour;
+    minute = !isNaN(minute_loaded) ? minute_loaded: minute;
 
     unloked_fields_loaded = localStorage.getItem('unloked_fields');
     unloked_fields = unloked_fields_loaded ? JSON.parse(unloked_fields_loaded): unloked_fields;
