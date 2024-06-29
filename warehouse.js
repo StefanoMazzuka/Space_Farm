@@ -82,8 +82,6 @@ function loadMarketItems() {
         const text_cell = document.createElement('td');
 
         text_cell.textContent = item.name;
-        text_cell.className = 'sell';
-        addClickEventSell(text_cell, i, item, tag);
         row.appendChild(text_cell);
 
         const price_cell = document.createElement('td');

@@ -8,7 +8,12 @@ function addClickEventBuy(item, product_id, product, tag) {
                 document.getElementById('coins').textContent = coins;
                 playSound('sell');
                 unloked_fields.push(product_id);
-            } else if (tag != 'fields') {
+            } else if (tag == 'products') {
+                coins -= product.buy_price;
+                warehouse[tag][product_id].stock += 1;
+                document.getElementById('coins').textContent = coins;
+                playSound('sell');
+            } else if (tag == 'seeds') {
                 coins -= product.buy_price;
                 warehouse[tag][product_id].stock += 10;
                 document.getElementById('coins').textContent = coins;
