@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('coins').textContent = coins;
                     playSound('sell');
                     unloked_fields.push(product_id);
-                } else {
+                } else if (tag != 'fields') {
                     coins -= product.buy_price;
                     warehouse[tag][product_id].stock += 10;
                     document.getElementById('coins').textContent = coins;
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = '';
 
         const table = document.createElement('table');
-        console.log(items);
         Object.keys(items).forEach(i => {
             const row              = document.createElement('tr');
             const item             = items[i];

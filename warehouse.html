@@ -11,8 +11,18 @@
     <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
     <audio id="sell" src="resources/sell.mp3" preload="auto"></audio>
     <h1>Warehouse</h1>
-    <div id="clock"></div>
-    <div id="coins"></div>
+    <table>
+        <tbody>
+            <tr>
+                <td class="info" id="clock"></td>
+                <td>H</td>
+            </tr>
+            <tr>
+                <td class="info" id="coins"></td>
+                <td><img height="20px" src="resources/coin.png"></td>
+            </tr>
+        </tbody>
+    </table>
     <div class="warehouse-content">
         <div class="grid-item w-item1" id="warehouse-market-panel"></div>
         <div class="grid-item w-item2" id="warehouse-harvest-panel"></div>

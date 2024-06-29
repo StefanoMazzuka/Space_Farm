@@ -1,6 +1,7 @@
 var image_paths = {
   'coin': 'resources/coin.png',
   'sell': 'resources/sell.png',
+  'lock': 'resources/lock.png',
 
   'blank': 'resources/blank.png',
   'up': 'resources/up.png',
@@ -27,9 +28,9 @@ var image_paths = {
   'fertilizer': 'resources/fertilizer.png',
   'bed': 'resources/bed.png',
 
-  'small-field': 'resources/small-field.png',
-  'medium-field': 'resources/medium-field.png',
-  'large-field': 'resources/large-field.png',
+  'field-2': 'resources/large-field.png',
+  'field-3': 'resources/medium-field.png',
+  'field-4': 'resources/small-field.png',
 
   'none': 'resources/none.png',
   '0': 'resources/grow-0.png',
@@ -38,13 +39,13 @@ var image_paths = {
 
 var coins      = 0;
 var day        = 1;
-var time_scale = 500;
+var time_scale = 125;
 var hour       = 0;
 var minute     = 0;
 var clock;
 var current_field = 'field-1';
 var current_seed;
-var unloked_fields = [];
+var unloked_fields = ['field-1'];
 
 var fields = {
   'field-1': { 
@@ -122,23 +123,23 @@ var store = {
   products: {
     'fertilizer': { 
       name: '1 Fertilizer',
-      buy_price: 50
+      buy_price: 500
     },
     'bed': { 
       name: '1 Bed',
       buy_price: 100
     }
   },
-  fields: {
-    'small-field': { 
+  fields: {    
+    'field-4': {
       name: 'Small field',
       buy_price: 2500
-    },
-    'medium-field': { 
+    }, 
+    'field-3': { 
       name: 'Medium field',
       buy_price: 5000
     },
-    'large-field': { 
+    'field-2': { 
       name: 'Large field',
       buy_price: 10000
     }

@@ -30,7 +30,15 @@ body {
     cursor: pointer;
 }
 
-.field {
+.locked {
+    display: grid;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.unlocked {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(10, 1fr);
@@ -156,11 +164,10 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-}
-
-img {
     height: 20px;
 }
+
+
 
 .store-content {
     display: grid;

@@ -18,10 +18,10 @@ function nextDay() {
     day++;
     hour = 6;
     minute = 0;
-    document.getElementById('day').textContent = day;
     growFields();
     startClock();
-    loadFields();
+    try {loadFields();}
+    catch {}
 }
 
 function advanceTime() {
@@ -29,9 +29,8 @@ function advanceTime() {
     if (minute >= 60) {
         minute = 0;
         hour++;
-        fluctuatePrices();
         if (hour >= 24) {
-            hour = 0;
+            fluctuatePrices();
             nextDay();
             playSound('changing-day-sound');
         }

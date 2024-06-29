@@ -11,12 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         coins      = 0;
         day        = 1;
-        time_scale = 500;
         hour       = 0;
         minute     = 0;
         clock;
         current_field = 'field-1';
         current_seed;
+        unloked_fields = ['field-1'];
+
+        const fields_divs_tmp = document.querySelectorAll('.field');
+
+        fields_divs_tmp.forEach(field_div => {
+            if (!unloked_fields.includes(field_div.id)) {            
+                field_div.classList.remove('unlocked');
+                field_div.classList.add('locked');
+            }
+        });
 
         fields = {
             'field-1': { 

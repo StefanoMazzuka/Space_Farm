@@ -10,9 +10,20 @@
     <audio id="sleep" src="resources/sleep.mp3" preload="auto"></audio>
     <audio id="changing-day-sound" src="resources/changing_day_sound.mp3" preload="auto"></audio>
     <audio id="sell" src="resources/sell.mp3" preload="auto"></audio>
+    <audio id="store-sound" src="resources/store.mp3" preload="auto"></audio>
     <h1>Store</h1>
-    <div id="clock"></div>
-    <div id="coins"></div>
+    <table>
+        <tbody>
+            <tr>
+                <td class="info" id="clock"></td>
+                <td>H</td>
+            </tr>
+            <tr>
+                <td class="info" id="coins"></td>
+                <td><img height="20px" src="resources/coin.png"></td>
+            </tr>
+        </tbody>
+    </table>
     <div class="store-content">
         <div class="grid-item s-item1" id="store-seeds-panel"></div>
         <div class="grid-item s-item2" id="store-products-panel"></div>
@@ -25,6 +36,7 @@
     <script src="globals.js"></script>
     <script src="time.js"></script>
     <script src="sounds.js"></script>
+    <script src="fields.js"></script>
     <script src="store.js"></script>
     <script>
         function navigateBack() {

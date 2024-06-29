@@ -2,7 +2,6 @@ loadFromLocalStorage();
 
 function addClickEventSell(item, product_id, product, tag) {
     item.addEventListener('click', () => {
-        console.log(item, product_id, product, tag);
         if (product.stock > 0) {
             coins += product.stock * product.sell_price;
             product.stock = 0;
@@ -109,6 +108,7 @@ function loadMarketItems() {
         if (item.sell_price > (buy_price * 0.12)) img_fluctation.src = image_paths['up'];
         else if (item.sell_price < (buy_price * 0.12)) img_fluctation.src = image_paths['down'];
         else img_fluctation.src = image_paths['blank'];
+        img_fluctation.className = 'img-item'
         img_fluctation_cell.appendChild(img_fluctation);
         row.appendChild(img_fluctation_cell);
 

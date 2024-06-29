@@ -2,28 +2,43 @@ const fields_divs = document.querySelectorAll('.field');
 
 fields_divs.forEach(field_div => {
     field_div.addEventListener('click', () => {
-        fields_divs.forEach(i => i.classList.remove('red-border'));
-        field_div.classList.add('red-border');
-        current_field = field_div.id;
+        if (unloked_fields.includes(field_div.id)) {
+            fields_divs.forEach(i => i.classList.remove('red-border'));
+            field_div.classList.add('red-border');
+            current_field = field_div.id;
+        }
     });
 });
 
 function updateFieldView(field_key) {
     const grid = document.getElementById(field_key);
-    grid.innerHTML = '';
 
-    fields[field_key].field.forEach(plot => {
-        var image;
-        if (plot[2] == 'none') {image = 'none'}
-        else if (plot[0] < 2) image = plot[0];
-        else image = plot[2];
+    if (unloked_fields.includes(field_key)) {            
+        grid.classList.remove('locked');
+        grid.classList.add('unlocked');
+        grid.innerHTML = '';
 
-        const img = document.createElement('img');
+        fields[field_key].field.forEach(plot => {        
+            var image;
+            if (plot[2] == 'none') {image = 'none'}
+            else if (plot[0] < 2) image = plot[0];
+            else image = plot[2];
 
-        img.src = image_paths[image];
-        img.classList.add('grid-image');
+            const img = document.createElement('img');
+
+            img.src = image_paths[image];
+            img.classList.add('grid-image');
+            img.classList.add('img-item');
+
+            grid.appendChild(img);
+        });
+    } else {
+        grid.innerHTML = '';
+        const img = document.createElement('img'); 
+        img.src   = image_paths['lock'];
+        img.classList.add('img-item');
         grid.appendChild(img);
-    });
+    }
 }
 
 function plant(field_key, seed_name) {
@@ -37,6 +52,7 @@ function plant(field_key, seed_name) {
             warehouse_seed.stock--;
             document.getElementById(`${seed_name}-stock`).textContent = warehouse_seed.stock;
             fields[field_key].field[plot] = [0, seed.time_to_harvest, seed_name.replace('-seed', ''), planted_day];
+            playSound('plant-sound');
         }
     }
 
@@ -61,8 +77,7 @@ function harvesting(field_key) {
 
     fields[field_key].field.forEach((plot, index) => {
         if (plot[0] == 2) {
-            const crop_key = plot[2];
-            const crop     = warehouse['harvest'][plot[2]];
+            const crop = warehouse['harvest'][plot[2]];
 
             if (field.info.fertilized && (Math.random() < 0.4)) {
                 crop.stock += 2;
@@ -77,6 +92,7 @@ function harvesting(field_key) {
 
     fields[field_key].info.fertilized = false;
 
+    playSound('harvest-sound');
     updateFieldView(field_key);
 }
 
@@ -93,7 +109,6 @@ function growFields() {
         }
     }
 }
-
 
 function loadFields() {
     Object.keys(fields).forEach(field => {
