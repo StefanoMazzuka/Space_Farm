@@ -27,7 +27,7 @@
         <div class="grid-item w-item1" id="warehouse-market-panel"></div>
         <div class="grid-item w-item2" id="warehouse-harvest-panel"></div>
         <div class="grid-item w-item3" id="warehouse-harvest-panel">
-            <img src="resources/exit.png" onclick="navigateBack()">
+            <img src="resources/exit.png" onclick="navigateTo('index.html')">
         </div>
     </div>
     <script src="localStorage.js"></script>
@@ -37,8 +37,8 @@
     <script src="fields.js"></script>
     <script src="warehouse.js"></script>
     <script>
-        function navigateBack() {
-            window.history.back();
+        function navigateTo(url) {
+            window.location.href = url;
         }
     </script>
 </body>
