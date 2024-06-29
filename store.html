@@ -29,7 +29,7 @@
         <div class="grid-item s-item2" id="store-products-panel"></div>
         <div class="grid-item s-item3" id="store-fields-panel"></div>
         <div class="grid-item s-item4">
-            <img src="resources/exit.png" onclick="navigateBack()">
+            <img src="resources/exit.png" onclick="navigateTo('index.html')">
         </div>
     </div>
     <script src="localStorage.js"></script>
@@ -39,8 +39,8 @@
     <script src="fields.js"></script>
     <script src="store.js"></script>
     <script>
-        function navigateBack() {
-            window.history.back();
+        function navigateTo(url) {
+            window.location.href = url;
         }
     </script>
 </body>
