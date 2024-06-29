@@ -123,7 +123,7 @@ var store = {
   products: {
     'fertilizer': { 
       name: '1 Fertilizer',
-      buy_price: 500
+      buy_price: 50
     },
     'bed': { 
       name: '1 Bed',
