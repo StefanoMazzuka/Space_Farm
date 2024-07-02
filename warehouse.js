@@ -103,8 +103,8 @@ function loadMarketItems() {
         const img_fluctation = document.createElement('img');
         const buy_price = store['seeds'][`${i}-seeds-box`].buy_price;
 
-        if (item.sell_price > (buy_price * 0.12)) img_fluctation.src = image_paths['up'];
-        else if (item.sell_price < (buy_price * 0.12)) img_fluctation.src = image_paths['down'];
+        if (item.sell_price > (buy_price * 0.15)) img_fluctation.src = image_paths['up'];
+        else if (item.sell_price < (buy_price * 0.15)) img_fluctation.src = image_paths['down'];
         else img_fluctation.src = image_paths['blank'];
         img_fluctation.className = 'img-item'
         img_fluctation_cell.appendChild(img_fluctation);

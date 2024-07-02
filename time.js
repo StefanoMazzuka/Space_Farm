@@ -20,7 +20,10 @@ function nextDay() {
     minute = 0;
     growFields();
     startClock();
-    try {loadFields();}
+    try {
+        loadFields();
+        fluctuatePrices();
+    }
     catch {}
 }
 
