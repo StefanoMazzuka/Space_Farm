@@ -127,7 +127,7 @@ var store = {
     },
     'bed': { 
       name: '1 Bed',
-      buy_price: 20
+      buy_price: 30
     }
   },
   fields: {    
@@ -183,27 +183,27 @@ var warehouse = {
     'wheat': { 
       name: 'wheat',
       stock: 0,
-      sell_price: 15
+      sell_price: 13
     },
     'lettuce': {
       name: 'lettuce',
       stock: 0,
-      sell_price: 30
+      sell_price: 26
     },
     'corn': {
       name: 'corn',
       stock: 0,
-      sell_price: 60
+      sell_price: 52
     },
     'tomato': {
       name: 'tomato',
       stock: 0,
-      sell_price: 120
+      sell_price: 104
     },
     'dragonfruit': {
       name: 'dragon fruit',
       stock: 0,
-      sell_price: 240
+      sell_price: 208
     }
   }
 }

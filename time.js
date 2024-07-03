@@ -4,8 +4,8 @@ function fluctuatePrices() {
         const product = products[p];
         let fluctuation;
         let random = Math.random();
-        if (random < 0.5) fluctuation = Math.max((product.sell_price - 5), (product.sell_price - 1));
-        else fluctuation = Math.min((product.sell_price + 5), (product.sell_price + 1));
+        if (random < 0.5) fluctuation = Math.max((product.sell_price - 3), (product.sell_price - 1));
+        else fluctuation = Math.min((product.sell_price + 3), (product.sell_price + 1));
         product.sell_price = Math.max(1, fluctuation);
     });
 

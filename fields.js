@@ -18,7 +18,15 @@ function updateFieldView(field_key) {
         grid.classList.add('unlocked');
         grid.innerHTML = '';
 
-        fields[field_key].field.forEach(plot => {        
+        if (fields[field_key].info.fertilized) {
+            document.getElementById(field_key).classList.remove('unfetilized');
+            document.getElementById(field_key).classList.add('fertilized');
+        } else {
+            document.getElementById(field_key).classList.remove('fertilized');
+            document.getElementById(field_key).classList.add('unfetilized');
+        }
+
+        fields[field_key].field.forEach(plot => {
             var image;
             if (plot[2] == 'none') {image = 'none'}
             else if (plot[0] < 2) image = plot[0];
