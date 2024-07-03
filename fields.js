@@ -13,9 +13,7 @@ fields_divs.forEach(field_div => {
 function updateFieldView(field_key) {
     const grid = document.getElementById(field_key);
 
-    if (unloked_fields.includes(field_key)) {            
-        grid.classList.remove('locked');
-        grid.classList.add('unlocked');
+    if (unloked_fields.includes(field_key)) {
         grid.innerHTML = '';
 
         if (fields[field_key].info.fertilized) {
@@ -42,10 +40,19 @@ function updateFieldView(field_key) {
         });
     } else {
         grid.innerHTML = '';
-        const img = document.createElement('img'); 
-        img.src   = image_paths['lock'];
-        img.classList.add('img-item');
-        grid.appendChild(img);
+        const lock_pos = (fields[field_key].field.length / 2) - 5;
+        var count = 1;
+
+        fields[field_key].field.forEach(plot => {
+            const img = document.createElement('img');
+            if (count == lock_pos) img.src = image_paths['lock'];
+            else img.src = image_paths['blank'];
+            count++;
+            img.classList.add('grid-image');
+            img.classList.add('img-item');
+
+            grid.appendChild(img);
+        });
     }
 }
 

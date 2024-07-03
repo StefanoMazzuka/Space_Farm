@@ -4,7 +4,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90%;
+    width: 90%;
 }
 
 .grid-container {
@@ -30,16 +31,7 @@ body {
     cursor: pointer;
 }
 
-.locked {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(10, 1fr);
-    margin: 5px;
-    cursor: pointer;
-    border: 1px solid black;
-}
-
-.unlocked {
+.field {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(10, 1fr);

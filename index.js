@@ -17,15 +17,6 @@ reset_btn.addEventListener('click', () => {
     current_seed;
     unloked_fields = ['field-1'];
 
-    const fields_divs_tmp = document.querySelectorAll('.field');
-
-    fields_divs_tmp.forEach(field_div => {
-        if (!unloked_fields.includes(field_div.id)) {            
-            field_div.classList.remove('unlocked');
-            field_div.classList.add('locked');
-        }
-    });
-
     fields = {
         'field-1': { 
             info: {
